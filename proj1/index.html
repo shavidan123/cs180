@@ -26,7 +26,9 @@
             <div id="section1" class="description">
                 <h2>Introduction</h2>
                 <p>This project for CS180 is a result of applying image pyramid and alignment algorithms to a collection of images that are separated into their three color channels. I found that computing SSD (Sum of Squared Differences) over a 15x15 pixel window worked well over the smaller jpg images
-                    but not the larger tif images. I then implemented an image pyramid algorithm to downsample the image and update displacement for the images that were too large to search. I also found that cropping the images by 15% and applying a sobel filter to the edges improved performance.</p>
+                    but not the larger tif images. I then implemented an image pyramid algorithm to downsample the image by a factor of 2 and recursively update displacement for the images that were too large to search. My algorithm was initially having a lot of trouble aligning the Emir, however I made a few changes
+                that improved performance on the emir while not harming the other alignments. First, I implemented cropping to a fixed amount (15%), this potentially helped ignore random noise from the irrelevant parts of the image.
+                I also applied Sobel filtering to detect edges, and this helped quite a bit as well. The intuition behind this was that the original aligment failed on the Emir due to the picture having different brightness values and much more emphasis on blue in his blue jacket. The results for all images can be seen below.
                 </p>
             </div>
 

@@ -43,13 +43,12 @@ def align(im1, im2, window=(-15, 15)):
 def image_pyramid(im1, im2):
     if im1.shape[0] < 50: #base case
         return align(im1, im2)
-    else:
-        #recursive step
-        res, best_offset = image_pyramid(rescale(im1, 0.5), rescale(im2, 0.5))
-        best_offset *= 2
-        result, next_offset = align(np.roll(im1, best_offset, (0, 1)), im2, (-1, 1)) #smaller window for pyramid steps
-        best_offset += next_offset
-        return result, best_offset
+    #recursive step
+    res, best_offset = image_pyramid(rescale(im1, 0.5), rescale(im2, 0.5))
+    best_offset *= 2
+    result, next_offset = align(np.roll(im1, best_offset, (0, 1)), im2, (-1, 1)) #smaller window for pyramid steps
+    best_offset += next_offset
+    return result, best_offset
 
 if not os.path.exists('output'):
     os.makedirs('output')
@@ -83,7 +82,7 @@ for imname in image_names:
     output_path = os.path.join(cur_dir, 'output',  os.path.basename(imname)[:-4] + ".jpg")
     print(output_path)
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    print(f"Processing {imname}")
+    print(f"calculating alignment for: {imname}")
 
     # Read the image, convert to double
     im = sk.img_as_float(skio.imread(imname))
@@ -114,7 +113,7 @@ for imname in image_names:
         #sobel filter
         sobel_b, sobel_g, sobel_r = np.abs(sobel(b)), np.abs(sobel(g)), np.abs(sobel(r))
         res, ag = image_pyramid(sobel_g, sobel_b)
-        print(ag)
+        print(ag) #best offset
         res, ar = image_pyramid(sobel_r, sobel_b)
         print(ar)
 

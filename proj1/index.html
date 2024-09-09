@@ -8,22 +8,50 @@
 </head>
 <body>
     <div class="container">
-        <h1>Project 1 - Colorizing The Prokudin-Gorskii Photo Collection</h1>
-        
-        <div class="image-results">
-            <div class="image-container">
-                <img src="output/cathedral.jpg" alt="Cathedral">
-                <p>Displacement vector: Green (x1, y1) Red (x2, y2)</p>
-            </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Sections</h2>
+            <ul>
+                <li><a href="#section1">Introduction</a></li>
+                <li><a href="#section2">Image 1</a></li>
+                <li><a href="#section3">Image 2</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1>Project 1 - Colorizing The Prokudin-Gorskii Photo Collection</h1>
             
-            <div class="image-container">
-                <img src="output/church.jpg" alt="Church">
-                <p>Displacement vector: (x2, y2)</p>
+            <!-- Description Section -->
+            <div id="section1" class="description">
+                <h2>Introduction</h2>
+                <p>This project for CS180 is a result of applying image pyramid and alignment algorithms to a collection of images that are separated into their three color channels. I found that computing SSD (Sum of Squared Differences) over a 15x15 pixel window worked well over the smaller jpg images
+                    but not the larger tif images. I then implemented an image pyramid algorithm to downsample the image and update displacement for the images that were too large to search. I also found that cropping the images by 15% and applying a sobel filter to the edges improved performance.</p>
+                </p>
             </div>
 
-            <!-- Add more image containers as needed -->
+            <!-- Gallery Section -->
+            <div class="gallery-section">
+                <h2 id="section2">Cathedral</h2>
+                <div class="image-container">
+                    <img src="output/cathedral.jpg" alt="Cathedral">
+                    <p>Cathedral. Displacement vectors x,y (green, red): (5, 2) (12, 3)</p>
+                </div>
+
+                <h2 id="section3">Church</h2>
+                <div class="image-container">
+                    <img src="output/church.jpg" alt="Church">
+                    <p>Church. Displacement vectors x,y (green, red): (24, 4) (58, -4)</p>
+                </div>
+
+                <!-- Add more sections and images as needed -->
+                 <h2 id="section4">Emir</h2>
+                <div class="image-container">
+                    <img src="output/emir.jpg" alt="Emir">
+                    <p>Emir. Displacement vectors x,y (green, red): (49, 24) (107, 40)</p>
+            </div>
         </div>
     </div>
 </body>
 </html>
-

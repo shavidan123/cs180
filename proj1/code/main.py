@@ -47,8 +47,7 @@ def image_pyramid(im1, im2):
     res, best_offset = image_pyramid(rescale(im1, 0.5), rescale(im2, 0.5))
     best_offset *= 2
     result, next_offset = align(np.roll(im1, best_offset, (0, 1)), im2, (-1, 1)) #smaller window for pyramid steps
-    best_offset += next_offset
-    return result, best_offset
+    return result, best_offset + next_offset
 
 if not os.path.exists('output'):
     os.makedirs('output')

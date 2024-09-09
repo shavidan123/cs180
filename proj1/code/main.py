@@ -13,14 +13,14 @@ import os
 
 def align(im1, im2, window=(-15, 15)):
     #implemented fixed cropping to not get the edges in the caculation
-    crop_percent = 0.15
+    crop= 0.15
     h, w = im1.shape
-    crop_h = int(h * crop_percent)
-    crop_w = int(w * crop_percent)
+    crop_h = int(crop * h)
+    crop_w = int(crop * w)
     im1_c = im1[crop_h:h-crop_h, crop_w:w-crop_w]
     h2, w2 = im2.shape
-    crop_h2 = int(h2 * crop_percent)
-    crop_w2 = int(w2 * crop_percent)
+    crop_h2 = int(crop * h2)
+    crop_w2 = int(crop * w2)
     im2_c = im2[crop_h2:h2-crop_h2, crop_w2:w2-crop_w2]
     
     min_diff = float('inf')

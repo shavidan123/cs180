@@ -82,8 +82,83 @@
 
             <!-- Answer the questions in Part 1.2 -->
             <div id="section3" class="description">
-                <h2>Answers to Questions (1.2)</h2>
-                <p>In part 1.2, we are asked to compare the effects of different window sizes in the SSD computation, and how downsampling affects the alignment of images. Through experimentation, we found that smaller window sizes lead to better alignment in smaller images, while larger window sizes struggle with fine details. The use of image pyramids greatly improves alignment in larger images by reducing the search space.</p>
+                <h2>Gaussian Blurred Finite Difference </h2>
+                <p>With this approach, we first blur the original image using a Gaussian filter. I made sure to choose an appropriate kernel size and standard deviation (10, 1)
+                and then I performed the same operation as earlier on the now blurred image. Overall, I noticed in this case that the Gaussian filter was able to smooth out the image and reduce the noise, 
+                which made the edges more pronounced. This is because the Gaussian filter is a low-pass filter that removes high-frequency noise from the image. In addition, certain fine details of the image were
+                lost as a result of the blurring, so there's a clear trade off. The results are shown below.
+                </p>
+                <div class="grad-gallery-section"></div>
+                    <div class="pair-container">
+                        <div class="image-container">
+                            <img src="images/fdx_gauss.png" alt="DoG X">
+                            <p>Blurred (X)</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="images/fdx_gaussbin.png" alt="Binarized DoG X">
+                            <p>Binarized Blurred (X)</p>
+                        </div>
+                    </div>
+                
+                    <div class="pair-container">
+                        <div class="image-container">
+                            <img src="images/fdy_gauss.png" alt="Finite Difference Y">
+                            <p>Blurred (Y)</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="images/fdy_gaussbin.png" alt="Binarized Finite Difference Y">
+                            <p>Binarized Blurred (Y)</p>
+                        </div>
+                    </div>
+                
+                    <div class="pair-container">
+                        <div class="image-container">
+                            <img src="images/fdmag_gauss.png" alt="Gradient Magnitude">
+                            <p>Blurred Gradient Magnitude</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="images/fdmag_gaussbin.png" alt="Binarized Gradient Magnitude">
+                            <p>Binarized Blurred Gradient Magnitude</p>
+                        </div>
+                    </div>
+                </div>
+                <h2>Derivative of Gaussian (DOG) </h2>
+                <p>This has the same result as blurring the original image with the Gaussian filter, but it only requires one convolution. To do this, we simply
+                convolve the Gaussian with dx and dy and then apply the filter. Results are shown below
+                </p>
+                <div class="grad-gallery-section"></div>
+                    <div class="pair-container">
+                        <div class="image-container">
+                            <img src="images/one_conv_x.png" alt="DoG X">
+                            <p>DoG (X)</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="images/one_conv_xbin.png" alt="Binarized DoG X">
+                            <p>Binarized DoG (X)</p>
+                        </div>
+                    </div>
+                
+                    <div class="pair-container">
+                        <div class="image-container">
+                            <img src="images/one_conv_y.png" alt="Finite Difference Y">
+                            <p>DoG (Y)</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="images/one_conv_ybin.png" alt="Binarized Finite Difference Y">
+                            <p>Binarized DoG (Y)</p>
+                        </div>
+                    </div>
+                
+                    <div class="pair-container">
+                        <div class="image-container">
+                            <img src="images/one_conv_grad.png" alt="Gradient Magnitude">
+                            <p>DoG Gradient Magnitude</p>
+                        </div>
+                        <div class="image-container">
+                            <img src="images/one_conv_gradbin.png" alt="Binarized Gradient Magnitude">
+                            <p>Binarized DoG Gradient Magnitude</p>
+                        </div>
+                    </div>
             </div>
 
             <!-- Unsharp Masking Section -->

@@ -139,27 +139,29 @@ h2 {
     transform: scale(1.05);
 }
 
-/* Gallery Section for Gradient Magnitude Computation */
 .grad-gallery-section {
     display: flex;
     flex-direction: column; /* Stack the pairs vertically */
+    align-items: center; /* Center the pairs horizontally */
     gap: 30px; /* Add space between each pair of images */
+    width: 100%;
 }
 
 /* Container for grouping original and binarized versions side by side */
 .pair-container {
     display: flex;
-    justify-content: space-between; /* Ensure images are side by side */
-    gap: 20px;
-    width: 100%;
+    justify-content: center; /* Center the images horizontally */
+    gap: 30px; /* Increase the gap between the two images */
+    width: 80%; /* Make the container wider to fill more of the page */
+    max-width: 1000px; /* Limit the width */
 }
 
 /* Styling for individual image containers */
 .image-container {
     background-color: #fafafa;
     border: 1px solid #ddd;
-    padding: 10px;
-    max-width: 200px;
+    padding: 15px; /* Increase padding to make the images appear larger */
+    width: 250px; /* Increase the width of the images */
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;

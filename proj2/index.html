@@ -14,7 +14,8 @@
             <ul>
                 <li><a href="#section1">Introduction</a></li>
                 <li><a href="#section2">Finite Differencing</a></li>
-                <li><a href="#section3">DoG</a></li>
+                <li><a href="#section3">Blurred Finite Differencing</a></li>
+                <li><a href="#section8">Derivative of Gaussian</a></li>
                 <li><a href="#section4">Unsharp Masking</a></li>
                 <li><a href="#section5">Hybrid Images</a></li>
                 <li><a href="#section6">Multiresolution Blending</a></li>
@@ -123,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            <div id="DoG" class="description">
+            <div id="section8" class="description">
                 <h2>Derivative of Gaussian (DOG) </h2>
                 <p>This has the same result as blurring the original image with the Gaussian filter, but it only requires one convolution. To do this, we simply
                 convolve the Gaussian with dx and dy and then apply the filter. Results are shown below
@@ -175,7 +176,7 @@
                     </div>
                     <div class="image-container">
                         <img src="images/sharpened_taj.jpg" alt="Sharpened Taj Mahal">
-                        <p>Sharpened Taj Mahal after Unsharp Masking</p>
+                        <p>Sharpened Taj Mahal</p>
                     </div>
                     <div class="image-container">
                         <img src="images/minas_tirith.jpg" alt="Original Minas Tirith">
@@ -198,7 +199,7 @@
                         <p>Blurred One Ring</p>
                     </div>
                     <div class="image-container">
-                        <img src="images/sharpened_ring.jpg" alt="Sharpened One Ring">
+                        <img src="images/sharpened_onering.jpg" alt="Sharpened One Ring">
                         <p>Resharpened One Ring</p>
                     </div>
                 </div>

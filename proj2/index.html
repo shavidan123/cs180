@@ -39,13 +39,47 @@
                 <h2>Gradient Magnitude Computation</h2>
                 <p>We compute the gradient magnitude of an image to detect edges. The reason why we are able to do this is because the gradient magnitude of the image corresponds to the intensity of the greatest change
                 in the image. This is useful for edge detection because edges are where the intensity of the image changes the most. The magnitude is calculated by taking the square root of the sum of squared partial derivatives
-                Gx and Gy, which correspond to the directional changes in the horizontal and vertical directions respectively. Below is an example of the computed gradient magnitude of an image:
+                Gx and Gy, which correspond to the directional changes in the horizontal and vertical directions respectively. My specific approach was as follows: A finite difference kernel was created for the x and y partial derivatives using np.array([[1, -1]]) for x and np.array([[1], [-1]]) for y.
+                These kernels were applied to the image using scipy.signal.convolve2d to compute the partial derivatives in each direction. The gradient magnitude was then calculated by combining these derivatives using np.sqrt(dx_deriv ** 2 + dy_deriv ** 2), effectively taking the L2 norm of the gradient vector at each pixel to produce the final edge image.
+                Below is an example of the computed gradient magnitude of the cameraman image, shown split into its x and y components before being combined:
                 </p>
                 
-                <div class="gallery-section">
+                <!-- Gallery for Finite Difference Operators and Gradient Magnitude -->
+                <div class="grad-gallery-section">
+                    <!-- Finite Difference Operator for x -->
                     <div class="image-container">
-                        <img src="images/gradient_magnitude.png" alt="Gradient Magnitude Example">
-                        <p>Figure 1: Computed Gradient Magnitude of Image</p>
+                        <img src="images/fdx.png" alt="Finite Difference X">
+                        <p>Finite Difference Operator (X)</p>
+                    </div>
+
+                    <!-- Binarized Finite Difference Operator for x -->
+                    <div class="image-container">
+                        <img src="images/fdxbin.png" alt="Binarized Finite Difference X">
+                        <p>Binarized Finite Difference Operator (X)</p>
+                    </div>
+
+                    <!-- Finite Difference Operator for y -->
+                    <div class="image-container">
+                        <img src="images/fdy.png" alt="Finite Difference Y">
+                        <p>Finite Difference Operator (Y)</p>
+                    </div>
+
+                    <!-- Binarized Finite Difference Operator for y -->
+                    <div class="image-container">
+                        <img src="images/fdybin.png" alt="Binarized Finite Difference Y">
+                        <p>Binarized Finite Difference Operator (Y)</p>
+                    </div>
+
+                    <!-- Gradient Magnitude -->
+                    <div class="image-container">
+                        <img src="images/fdmag.png" alt="Gradient Magnitude">
+                        <p>Gradient Magnitude</p>
+                    </div>
+
+                    <!-- Binarized Gradient Magnitude -->
+                    <div class="image-container">
+                        <img src="images/fdmagbin.png" alt="Binarized Gradient Magnitude">
+                        <p>Binarized Gradient Magnitude</p>
                     </div>
                 </div>
             </div>
@@ -123,7 +157,7 @@
             
                     <!-- Original Orange Image (Right) -->
                     <div class="image-container">
-                        <img src="images/original_orange.png" alt="Original Orange Image">
+                        <img src="images/orange.jpeg" alt="Original Orange Image">
                         <p>Original Orange Image</p>
                     </div>
                 </div>
@@ -147,7 +181,7 @@
             
                     <!-- Original Windows XP Image (Right) -->
                     <div class="image-container">
-                        <img src="images/windowsxp.png" alt="Original Windows XP Image">
+                        <img src="images/windowsxp.jpg" alt="Original Windows XP Image">
                         <p>Original Windows XP Image</p>
                     </div>
                 </div>

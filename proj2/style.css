@@ -105,3 +105,36 @@ h2 {
 .image-container:hover {
     transform: scale(1.05);
 }
+
+/* Multiresolution Blending Layout */
+.blending-container {
+    display: flex;
+    justify-content: space-around; /* Adjusts spacing between images */
+    align-items: center; /* Vertically aligns images */
+    margin-bottom: 40px; /* Adds spacing after each blending section */
+}
+
+.image-container {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    padding: 10px;
+    max-width: 250px; /* Set max width for each image */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-container img {
+    max-width: 100%; /* Ensures images fit within the container */
+    height: auto;
+}
+
+.image-container p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.image-container:hover {
+    transform: scale(1.05);
+}

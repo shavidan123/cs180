@@ -142,11 +142,19 @@ h2 {
 /* Gallery Section for Gradient Magnitude Computation */
 .grad-gallery-section {
     display: flex;
-    flex-wrap: wrap;  /* Ensure that images can wrap to new lines */
-    justify-content: space-around;
-    gap: 20px;
+    flex-direction: column; /* Stack the pairs vertically */
+    gap: 30px; /* Add space between each pair of images */
 }
 
+/* Container for grouping original and binarized versions side by side */
+.pair-container {
+    display: flex;
+    justify-content: space-between; /* Ensure images are side by side */
+    gap: 20px;
+    width: 100%;
+}
+
+/* Styling for individual image containers */
 .image-container {
     background-color: #fafafa;
     border: 1px solid #ddd;
@@ -158,7 +166,7 @@ h2 {
 }
 
 .image-container img {
-    max-width: 100%; /* Ensure the image fits within the container */
+    max-width: 100%;
     height: auto;
 }
 

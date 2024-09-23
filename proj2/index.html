@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - Fun with Filters and Frequencies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Avidan Shah</h2>
+            <ul>
+                <li><a href="#section1">Introduction</a></li>
+                <li><a href="#section2">Gradient Magnitude Computation</a></li>
+                <li><a href="#section3">Answers to Questions (1.2)</a></li>
+                <li><a href="#section4">Unsharp Masking</a></li>
+                <li><a href="#section5">Hybrid Images</a></li>
+                <li><a href="#section6">Multiresolution Blending</a></li>
+                <li><a href="#section7">Conclusion</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1>CS180 Project 2 - Fun with Filters and Frequencies</h1>
+            
+            <!-- Introduction Section -->
+            <div id="section1" class="description">
+                <h2>Introduction</h2>
+                <p>In this project, we explore the use of filters and frequencies in image processing. The project is divided into two parts where we work with gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending. Each section details the process and provides visualizations to demonstrate the results.
+                I would say that the most interesting thing that I learned from the project as a whole is how to use low and high pass filters to get different effects on the human eye from photos. I didn't really have any signal processing experience before this class.
+                </p>
+            </div>
+
+            <!-- Gradient Magnitude Computation Section -->
+            <div id="section2" class="description">
+                <h2>Gradient Magnitude Computation</h2>
+                <p>We compute the gradient magnitude of an image to detect edges. The reason why we are able to do this is because the gradient magnitude of the image corresponds to the intensity of the greatest change
+                in the image. This is useful for edge detection because edges are where the intensity of the image changes the most. The magnitude is calculated by taking the square root of the sum of squared partial derivatives
+                Gx and Gy, which correspond to the directional changes in the horizontal and vertical directions respectively. Below is an example of the computed gradient magnitude of an image:
+                </p>
+                
+                <div class="gallery-section">
+                    <div class="image-container">
+                        <img src="images/gradient_magnitude.png" alt="Gradient Magnitude Example">
+                        <p>Figure 1: Computed Gradient Magnitude of Image</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Answer the questions in Part 1.2 -->
+            <div id="section3" class="description">
+                <h2>Answers to Questions (1.2)</h2>
+                <p>In part 1.2, we are asked to compare the effects of different window sizes in the SSD computation, and how downsampling affects the alignment of images. Through experimentation, we found that smaller window sizes lead to better alignment in smaller images, while larger window sizes struggle with fine details. The use of image pyramids greatly improves alignment in larger images by reducing the search space.</p>
+            </div>
+
+            <!-- Unsharp Masking Section -->
+            <div id="section4" class="description">
+                <h2>Unsharp Masking</h2>
+                <p>Unsharp masking is a technique used to sharpen an image by emphasizing its high-frequency components. Below, you can see the progression from the original image to the sharpened image:</p>
+                
+                <div class="gallery-section">
+                    <div class="image-container">
+                        <img src="images/taj.jpg" alt="Original Taj Mahal">
+                        <p>Original Taj Mahal</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="images/sharpened_taj.jpg" alt="Sharpened Taj Mahal">
+                        <p>Sharpened Taj Mahal after Unsharp Masking</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="images/minas_tirith.jpg" alt="Original Minas Tirith">
+                        <p>Original Minas Tirith</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="images/sharpened_minas_tirith.jpg" alt="Sharpened Minas Tirith">
+                        <p>Sharpened Minas Tirith</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hybrid Images Section -->
+            <div id="section5" class="description">
+                <h2>Hybrid Images and Fourier Analysis</h2>
+                <p>Hybrid images are created by blending high frequencies from one image with low frequencies from another. Below are examples of hybrid images along with their Fourier analysis:</p>
+                
+                <div class="gallery-section">
+                    <div class="image-container">
+                        <img src="images/hybrid_image1.png" alt="Hybrid Image Example">
+                        <p>Derek + Nutmeg</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="images/hybrid_image_failure.png" alt="Failed Hybrid Image">
+                        <p>Bilolas (Bilbo + Legolas)</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="images/fourier_analysis.png" alt="Fourier Analysis">
+                        <p>Fourier Analysis of Hybrid Image</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multiresolution Blending Section -->
+            <div id="section6" class="description">
+                <h2>Multiresolution Blending</h2>
+                <p>Multiresolution blending allows us to seamlessly blend two images together. Below are examples of the blended images, including one with an irregular mask:</p>
+                
+                <div class="gallery-section">
+                    <div class="image-container">
+                        <img src="images/orapple_blended.png" alt="Blended Orapple">
+                        <p>Blended Orapple (Apple + Orange)</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="images/baraddowsxpblended.png" alt="Blended Image with Irregular Mask">
+                        <p>Baraddows XP (Barad-Dur/Mount Doom + Windows XP Background)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion Section -->
+            <div id="section7" class="description">
+                <h2>Conclusion</h2>
+                <p>This project showcases various filtering techniques and how they can be applied to image processing. We explored gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending, each producing interesting and useful results. The techniques presented in this project are foundational for many applications in computer vision.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

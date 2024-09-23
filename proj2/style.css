@@ -11,6 +11,12 @@ body {
     overflow: hidden;
 }
 
+/* Main container with flex display to ensure full-height layout */
+.container {
+    display: flex;
+    min-height: 100vh; /* Full viewport height */
+}
+
 /* Sidebar Styling */
 .sidebar {
     width: 250px;
@@ -19,14 +25,24 @@ body {
     padding: 20px;
     overflow-y: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Prevent the sidebar from shrinking */
 }
 
+/* Content styling to fill the remaining space */
+.content {
+    flex: 1; /* Fill the remaining space */
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Sidebar heading */
 .sidebar h2 {
     text-align: center;
     color: #fff;
     margin-bottom: 20px;
 }
 
+/* Sidebar list styling */
 .sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -36,6 +52,7 @@ body {
     margin: 10px 0;
 }
 
+/* Sidebar link styling */
 .sidebar ul li a {
     color: #ddd;
     text-decoration: none;
@@ -45,6 +62,7 @@ body {
     transition: background 0.3s;
 }
 
+/* Hover effect for links */
 .sidebar ul li a:hover {
     background-color: #555;
 }

@@ -68,7 +68,6 @@
                 </div>
             </div>
 
-            <!-- Answer the questions in Part 1.2 -->
             <div id="section3" class="description">
                 <h2>Gaussian Blurred Finite Difference </h2>
                 <p>With this approach, we first blur the original image using a Gaussian filter. I made sure to choose an appropriate kernel size and standard deviation (10, 1)
@@ -76,7 +75,7 @@
                 which made the edges more pronounced and rounded. This is because the Gaussian filter is a low-pass filter that removes high-frequency noise from the image. In addition, certain fine details of the image were
                 lost as a result of the blurring, so there's a clear trade off. The results are shown below.
                 </p>
-                <div class="grad-gallery-section"></div>
+                <div class="grad-gallery-section">
                     <div class="pair-container">
                         <div class="image-container">
                             <img src="images/fdx_gauss.png" alt="DoG X">
@@ -111,12 +110,13 @@
                     </div>
                 </div>
             </div>
-            <div id="section8" class="description">
+
+            <div id="section4" class="description">
                 <h2>Derivative of Gaussian (DOG) </h2>
                 <p>This has the same result as blurring the original image with the Gaussian filter, but it only requires one convolution. To do this, we simply
                 convolve the Gaussian with dx and dy and then apply the filter. Results are shown below, and are nearly identical to the previous section
                 </p>
-                <div class="grad-gallery-section"></div>
+                <div class="grad-gallery-section">
                     <div class="pair-container">
                         <div class="image-container">
                             <img src="images/one_conv_x.png" alt="DoG X">
@@ -152,7 +152,7 @@
                 </div>
             </div>
             <!-- Unsharp Masking Section -->
-            <div id="section4" class="description">
+            <div id="section5" class="description">
                 <h2>Unsharp Masking</h2>
                 <p>Unsharp masking is a technique used to sharpen an image by emphasizing its high-frequency components. Below, you can see the progression from the original image to the sharpened image from Alpha 2 to 4:</p>
                 
@@ -209,7 +209,7 @@
             </div>
 
             <!-- Hybrid Images Section -->
-            <div id="section5" class="description">
+            <div id="section6" class="description">
                 <h2>Hybrid Images and Fourier Analysis</h2>
                 <p>Hybrid images are created by blending high frequencies from one image with low frequencies from another. I show two successful examples and one less successful attempt.
                     Below are examples of hybrid images along with their Fourier analysis:
@@ -283,7 +283,7 @@
             </div>
 
             <!-- Multiresolution Blending Section -->
-            <div id="section6" class="description">
+            <div id="section7" class="description">
                 <h2>Multiresolution Blending and Gaussian / Laplacian Stacks</h2>
                 <p>
                     In this process, the Gaussian stack is created by applying a Gaussian blur to each level without downsampling, so the image size remains consistent across all levels. The Laplacian stack is computed by subtracting consecutive levels of the Gaussian stack to capture edge-like details at different scales. Specifically, each level of the Laplacian stack is obtained by subtracting the next level of the Gaussian stack from the current level.
@@ -395,7 +395,7 @@
             </div>
 
             <!-- Conclusion Section -->
-            <div id="section7" class="description">
+            <div id="section8" class="description">
                 <h2>Conclusion</h2>
                 <p>This project showcases various filtering techniques and how they can be applied to image processing. I explored gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending, each producing interesting and useful results. The techniques presented in this project are foundational for many applications in computer vision.</p>
             </div>

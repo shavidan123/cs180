@@ -86,7 +86,7 @@
                 <h2>Gaussian Blurred Finite Difference </h2>
                 <p>With this approach, we first blur the original image using a Gaussian filter. I made sure to choose an appropriate kernel size and standard deviation (10, 1)
                 and then I performed the same operation as earlier on the now blurred image. Overall, I noticed in this case that the Gaussian filter was able to smooth out the image and reduce the noise, 
-                which made the edges more pronounced. This is because the Gaussian filter is a low-pass filter that removes high-frequency noise from the image. In addition, certain fine details of the image were
+                which made the edges more pronounced and rounded. This is because the Gaussian filter is a low-pass filter that removes high-frequency noise from the image. In addition, certain fine details of the image were
                 lost as a result of the blurring, so there's a clear trade off. The results are shown below.
                 </p>
                 <div class="grad-gallery-section"></div>
@@ -127,7 +127,7 @@
             <div id="section8" class="description">
                 <h2>Derivative of Gaussian (DOG) </h2>
                 <p>This has the same result as blurring the original image with the Gaussian filter, but it only requires one convolution. To do this, we simply
-                convolve the Gaussian with dx and dy and then apply the filter. Results are shown below
+                convolve the Gaussian with dx and dy and then apply the filter. Results are shown below, and are nearly identical to the previous section
                 </p>
                 <div class="grad-gallery-section"></div>
                     <div class="pair-container">
@@ -179,7 +179,7 @@
                         <p>Sharpened Taj Mahal (alpha = 2)</p>
                     </div>
                     <div class="image-container"></div>
-                        <img src="images/sharpened_taj_alpha_3.jpg" alt="Sharpened Taj Mahal (alpha = 3)">
+                        <img src="images/sharpened_taj_3.jpg" alt="Sharpened Taj Mahal (alpha = 3)">
                         <p>Sharpened Taj Mahal (alpha = 3)</p>
                     </div>
                     <div class="image-container"></div>
@@ -224,7 +224,9 @@
             <!-- Hybrid Images Section -->
             <div id="section5" class="description">
                 <h2>Hybrid Images and Fourier Analysis</h2>
-                <p>Hybrid images are created by blending high frequencies from one image with low frequencies from another. Below are examples of hybrid images along with their Fourier analysis:</p>
+                <p>Hybrid images are created by blending high frequencies from one image with low frequencies from another. I show two successful examples and one less successful attempt.
+                    Below are examples of hybrid images along with their Fourier analysis:
+                </p>
                 
                 <div class="gallery-section">
                     <div class="image-container">
@@ -408,7 +410,7 @@
             <!-- Conclusion Section -->
             <div id="section7" class="description">
                 <h2>Conclusion</h2>
-                <p>This project showcases various filtering techniques and how they can be applied to image processing. We explored gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending, each producing interesting and useful results. The techniques presented in this project are foundational for many applications in computer vision.</p>
+                <p>This project showcases various filtering techniques and how they can be applied to image processing. I explored gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending, each producing interesting and useful results. The techniques presented in this project are foundational for many applications in computer vision.</p>
             </div>
         </div>
     </div>

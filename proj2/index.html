@@ -295,7 +295,16 @@
 
             <!-- Multiresolution Blending Section -->
             <div id="section6" class="description">
-                <h2>Multiresolution Blending</h2>
+                <h2>Multiresolution Blending and Gaussian / Laplacian Stacks</h2>
+                <p>
+                    In this process, the Gaussian stack is created by applying a Gaussian blur to each level without downsampling, so the image size remains consistent across all levels. The Laplacian stack is computed by subtracting consecutive levels of the Gaussian stack to capture edge-like details at different scales. Specifically, each level of the Laplacian stack is obtained by subtracting the next level of the Gaussian stack from the current level.
+                    Below, you can see the result of the gaussian stacks at different depth when applied to the apple and orange images.
+                </p>
+                <div class="image-container">
+                    <img src="images/visualizationglstack.png" alt="Gaussian Stack">
+                    <p>Gaussian Stack Visualization</p>
+                </div>
+
                 <p>Multiresolution blending allows us to seamlessly blend two images together. Below, the two original images are shown on the left and right, with the blended image in the center:</p>
             
                 <!-- Container for the original and blended images (Orapple) -->

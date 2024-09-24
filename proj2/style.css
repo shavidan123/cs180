@@ -5,192 +5,46 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Main container with flex display for full layout */
-.container {
-    display: flex;
-    min-height: 100vh; /* Full viewport height */
-    overflow: auto; /* Allow scrolling if necessary */
-}
-
-/* Sidebar Styling */
-.sidebar {
-    width: 250px;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    overflow-y: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0; /* Prevent the sidebar from shrinking */
-}
-
-/* Content styling to fill the remaining space */
 .content {
-    flex: 1; /* Fill the remaining space */
     padding: 20px;
-    overflow-y: auto;
 }
 
-/* Sidebar heading */
-.sidebar h2 {
-    text-align: center;
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-/* Sidebar list styling */
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin: 10px 0;
-}
-
-/* Sidebar link styling */
-.sidebar ul li a {
-    color: #ddd;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    border-radius: 4px;
-    transition: background 0.3s;
-}
-
-/* Hover effect for links */
-.sidebar ul li a:hover {
-    background-color: #555;
-}
-
-/* Main Content Styling */
-.content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    width: calc(100% - 250px); /* Ensure content takes up the remaining width */
-}
-
-h1 {
+h1, h2 {
     text-align: center;
     color: #333;
-    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 40px;
 }
 
 .description {
     margin-bottom: 40px;
 }
 
-h2 {
-    color: #444;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-    margin-top: 30px;
-}
-
-.gallery-section {
+.image-group {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
     justify-content: center;
-}
-
-.image-container {
-    background-color: #fafafa;
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.image-container img {
-    max-width: 100%;
-    height: auto;
-}
-
-.image-container p {
-    margin: 10px 0 0;
-    font-size: 14px;
-    color: #555;
-}
-
-.image-container:hover {
-    transform: scale(1.05);
-}
-
-/* Multiresolution Blending Layout */
-.blending-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* Adjusts spacing between images */
-    align-items: center; /* Vertically aligns images */
-    margin-bottom: 40px; /* Adds spacing after each blending section */
-}
-
-.image-container {
-    background-color: #fafafa;
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-width: 200px; /* Set max width for each image */
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.image-container img {
-    max-width: 100%; /* Ensures images fit within the container */
-    height: auto;
-}
-
-.image-container p {
-    margin: 10px 0 0;
-    font-size: 14px;
-    color: #555;
-}
-
-.image-container:hover {
-    transform: scale(1.05);
-}
-
-/* Gallery Section for Gradient Magnitude Computation */
-.grad-gallery-section {
-    display: flex;
-    flex-direction: column; /* Stack the pairs vertically */
-    gap: 30px; /* Add space between each pair of images */
-}
-
-/* Container for grouping original and binarized versions side by side */
-.pair-container {
-    display: flex;
-    justify-content: space-around; /* Ensure images are side by side */
     gap: 20px;
-    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
-/* Styling for individual image containers */
 .image-container {
-    background-color: #fafafa;
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-width: 200px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    max-width: 300px;
 }
 
 .image-container img {
     max-width: 100%;
     height: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .image-container p {
-    margin-top: 10px;
     font-size: 14px;
     color: #555;
-}
-
-.image-container:hover {
-    transform: scale(1.05);
+    margin-top: 10px;
 }

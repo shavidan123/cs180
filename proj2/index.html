@@ -7,332 +7,225 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>Avidan Shah</h2>
-            <ul>
-                <li><a href="#section1">Introduction</a></li>
-                <li><a href="#section2">Finite Differencing</a></li>
-                <li><a href="#section3">Blurred Finite Differencing</a></li>
-                <li><a href="#section8">Derivative of Gaussian</a></li>
-                <li><a href="#section4">Unsharp Masking</a></li>
-                <li><a href="#section5">Hybrid Images</a></li>
-                <li><a href="#section6">Multiresolution Blending</a></li>
-                <li><a href="#section7">Conclusion</a></li>
-            </ul>
+    <div class="content">
+        <!-- Main Content -->
+        <h1>CS180 Project 2 - Fun with Filters and Frequencies</h1>
+        
+        <!-- Introduction Section -->
+        <div id="section1" class="description">
+            <h2>Introduction</h2>
+            <p>In this project, we explore the use of filters and frequencies in image processing. The project is divided into two parts where we work with gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending. Each section details the process and provides visualizations to demonstrate the results.
+            I would say that the most interesting thing that I learned from the project as a whole is how to use low and high pass filters to get different effects on the human eye from photos. I didn't really have any signal processing experience before this class.
+            </p>
         </div>
 
-        <!-- Main Content -->
-        <div class="content">
-            <h1>CS180 Project 2 - Fun with Filters and Frequencies</h1>
+        <!-- Gradient Magnitude Computation Section -->
+        <div id="section2" class="description">
+            <h2>Gradient Magnitude Computation</h2>
+            <p>We compute the gradient magnitude of an image to detect edges. The gradient magnitude corresponds to the intensity of the greatest change in the image. The magnitude is calculated by taking the square root of the sum of squared partial derivatives Gx and Gy, which correspond to the directional changes in the horizontal and vertical directions respectively. My approach used finite difference kernels for the x and y partial derivatives. Below is an example of the computed gradient magnitude of the cameraman image, shown split into its x and y components before being combined:</p>
             
-            <!-- Introduction Section -->
-            <div id="section1" class="description">
-                <h2>Introduction</h2>
-                <p>In this project, we explore the use of filters and frequencies in image processing. The project is divided into two parts where we work with gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending. Each section details the process and provides visualizations to demonstrate the results.
-                I would say that the most interesting thing that I learned from the project as a whole is how to use low and high pass filters to get different effects on the human eye from photos. I didn't really have any signal processing experience before this class.
-                </p>
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/fdx.png" alt="Finite Difference X">
+                    <p>Finite Difference Operator (X)</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/fdxbin.png" alt="Binarized Finite Difference X">
+                    <p>Binarized Finite Difference Operator (X)</p>
+                </div>
             </div>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/fdy.png" alt="Finite Difference Y">
+                    <p>Finite Difference Operator (Y)</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/fdybin.png" alt="Binarized Finite Difference Y">
+                    <p>Binarized Finite Difference Operator (Y)</p>
+                </div>
+            </div>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/fdmag.png" alt="Gradient Magnitude">
+                    <p>Gradient Magnitude</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/fdmagbin.png" alt="Binarized Gradient Magnitude">
+                    <p>Binarized Gradient Magnitude</p>
+                </div>
+            </div>
+        </div>
 
-            <!-- Gradient Magnitude Computation Section -->
-            <div id="section2" class="description">
-                <h2>Gradient Magnitude Computation</h2>
-                <p>We compute the gradient magnitude of an image to detect edges. The reason why we are able to do this is because the gradient magnitude of the image corresponds to the intensity of the greatest change
-                in the image. This is useful for edge detection because edges are where the intensity of the image changes the most. The magnitude is calculated by taking the square root of the sum of squared partial derivatives
-                Gx and Gy, which correspond to the directional changes in the horizontal and vertical directions respectively. My specific approach was as follows: A finite difference kernel was created for the x and y partial derivatives using np.array([[1, -1]]) for x and np.array([[1], [-1]]) for y.
-                These kernels were applied to the image using scipy.signal.convolve2d to compute the partial derivatives in each direction. The gradient magnitude was then calculated by combining these derivatives using np.sqrt(dx_deriv ** 2 + dy_deriv ** 2), effectively taking the L2 norm of the gradient vector at each pixel to produce the final edge image.
-                Below is an example of the computed gradient magnitude of the cameraman image, shown split into its x and y components before being combined:
-                </p>
-                
-                <div class="grad-gallery-section">
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/fdx.png" alt="Finite Difference X">
-                            <p>Finite Difference Operator (X)</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/fdxbin.png" alt="Binarized Finite Difference X">
-                            <p>Binarized Finite Difference Operator (X)</p>
-                        </div>
-                    </div>
-                
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/fdy.png" alt="Finite Difference Y">
-                            <p>Finite Difference Operator (Y)</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/fdybin.png" alt="Binarized Finite Difference Y">
-                            <p>Binarized Finite Difference Operator (Y)</p>
-                        </div>
-                    </div>
-                
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/fdmag.png" alt="Gradient Magnitude">
-                            <p>Gradient Magnitude</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/fdmagbin.png" alt="Binarized Gradient Magnitude">
-                            <p>Binarized Gradient Magnitude</p>
-                        </div>
-                    </div>
+        <!-- Gaussian Blurred Finite Difference Section -->
+        <div id="section3" class="description">
+            <h2>Gaussian Blurred Finite Difference</h2>
+            <p>With this approach, we first blur the original image using a Gaussian filter and then compute the gradient magnitude. This technique helps reduce noise, making the edges more pronounced while certain details are lost due to blurring. Below are the results:</p>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/fdx_gauss.png" alt="Blurred Finite Difference X">
+                    <p>Blurred (X)</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/fdx_gaussbin.png" alt="Binarized Blurred X">
+                    <p>Binarized Blurred (X)</p>
                 </div>
             </div>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/fdy_gauss.png" alt="Blurred Finite Difference Y">
+                    <p>Blurred (Y)</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/fdy_gaussbin.png" alt="Binarized Blurred Y">
+                    <p>Binarized Blurred (Y)</p>
+                </div>
+            </div>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/fdmag_gauss.png" alt="Blurred Gradient Magnitude">
+                    <p>Blurred Gradient Magnitude</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/fdmag_gaussbin.png" alt="Binarized Blurred Gradient Magnitude">
+                    <p>Binarized Blurred Gradient Magnitude</p>
+                </div>
+            </div>
+        </div>
 
-            <!-- Answer the questions in Part 1.2 -->
-            <div id="section3" class="description">
-                <h2>Gaussian Blurred Finite Difference </h2>
-                <p>With this approach, we first blur the original image using a Gaussian filter. I made sure to choose an appropriate kernel size and standard deviation (10, 1)
-                and then I performed the same operation as earlier on the now blurred image. Overall, I noticed in this case that the Gaussian filter was able to smooth out the image and reduce the noise, 
-                which made the edges more pronounced. This is because the Gaussian filter is a low-pass filter that removes high-frequency noise from the image. In addition, certain fine details of the image were
-                lost as a result of the blurring, so there's a clear trade off. The results are shown below.
-                </p>
-                <div class="grad-gallery-section"></div>
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/fdx_gauss.png" alt="DoG X">
-                            <p>Blurred (X)</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/fdx_gaussbin.png" alt="Binarized DoG X">
-                            <p>Binarized Blurred (X)</p>
-                        </div>
-                    </div>
-                
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/fdy_gauss.png" alt="Finite Difference Y">
-                            <p>Blurred (Y)</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/fdy_gaussbin.png" alt="Binarized Finite Difference Y">
-                            <p>Binarized Blurred (Y)</p>
-                        </div>
-                    </div>
-                
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/fdmag_gauss.png" alt="Gradient Magnitude">
-                            <p>Blurred Gradient Magnitude</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/fdmag_gaussbin.png" alt="Binarized Gradient Magnitude">
-                            <p>Binarized Blurred Gradient Magnitude</p>
-                        </div>
-                    </div>
+        <!-- Derivative of Gaussian Section -->
+        <div id="section8" class="description">
+            <h2>Derivative of Gaussian (DoG)</h2>
+            <p>By using the Derivative of Gaussian (DoG), we achieve a similar result as with Gaussian blurring, but with just one convolution. The DoG allows us to compute both the smoothing and the derivative in a single step. Below are the results:</p>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/one_conv_x.png" alt="DoG X">
+                    <p>DoG (X)</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/one_conv_xbin.png" alt="Binarized DoG X">
+                    <p>Binarized DoG (X)</p>
                 </div>
             </div>
-            <div id="section8" class="description">
-                <h2>Derivative of Gaussian (DOG) </h2>
-                <p>This has the same result as blurring the original image with the Gaussian filter, but it only requires one convolution. To do this, we simply
-                convolve the Gaussian with dx and dy and then apply the filter. Results are shown below
-                </p>
-                <div class="grad-gallery-section"></div>
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/one_conv_x.png" alt="DoG X">
-                            <p>DoG (X)</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/one_conv_xbin.png" alt="Binarized DoG X">
-                            <p>Binarized DoG (X)</p>
-                        </div>
-                    </div>
-                
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/one_conv_y.png" alt="Finite Difference Y">
-                            <p>DoG (Y)</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/one_conv_ybin.png" alt="Binarized Finite Difference Y">
-                            <p>Binarized DoG (Y)</p>
-                        </div>
-                    </div>
-                
-                    <div class="pair-container">
-                        <div class="image-container">
-                            <img src="images/one_conv_grad.png" alt="Gradient Magnitude">
-                            <p>DoG Gradient Magnitude</p>
-                        </div>
-                        <div class="image-container">
-                            <img src="images/one_conv_gradbin.png" alt="Binarized Gradient Magnitude">
-                            <p>Binarized DoG Gradient Magnitude</p>
-                        </div>
-                    </div>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/one_conv_y.png" alt="DoG Y">
+                    <p>DoG (Y)</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/one_conv_ybin.png" alt="Binarized DoG Y">
+                    <p>Binarized DoG (Y)</p>
                 </div>
             </div>
-            <!-- Unsharp Masking Section -->
-            <div id="section4" class="description">
-                <h2>Unsharp Masking</h2>
-                <p>Unsharp masking is a technique used to sharpen an image by emphasizing its high-frequency components. Below, you can see the progression from the original image to the sharpened image:</p>
-                
-                <div class="gallery-section">
-                    <div class="image-container">
-                        <img src="images/taj.jpg" alt="Original Taj Mahal">
-                        <p>Original Taj Mahal</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/sharpened_taj.jpg" alt="Sharpened Taj Mahal">
-                        <p>Sharpened Taj Mahal</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/minas_tirith.jpg" alt="Original Minas Tirith">
-                        <p>Original Minas Tirith</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/sharpened_mt.jpg" alt="Sharpened Minas Tirith">
-                        <p>Sharpened Minas Tirith</p>
-                    </div>
-                    <p>
-                        Below, we show the result of taking an already sharpened image, the one ring, blurring it, and resharpening.
-                        In this case, you can see that the ring's text is much more pronounced and the edges of the map of middle earth are much sharper.
-                    </p>
-                    <div class="image-container">
-                        <img src="images/onering.jpg" alt="Original One Ring">
-                        <p>Original One Ring</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/blurred_ring.jpg" alt="Blurred One Ring">
-                        <p>Blurred One Ring</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/sharpened_onering.jpg" alt="Sharpened One Ring">
-                        <p>Resharpened One Ring</p>
-                    </div>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/one_conv_grad.png" alt="DoG Gradient Magnitude">
+                    <p>DoG Gradient Magnitude</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/one_conv_gradbin.png" alt="Binarized DoG Gradient Magnitude">
+                    <p>Binarized DoG Gradient Magnitude</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unsharp Masking Section -->
+        <div id="section4" class="description">
+            <h2>Unsharp Masking</h2>
+            <p>Unsharp masking sharpens an image by emphasizing its high-frequency components. Below are images before and after applying unsharp masking:</p>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/taj.jpg" alt="Original Taj Mahal">
+                    <p>Original Taj Mahal</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/sharpened_taj.jpg" alt="Sharpened Taj Mahal">
+                    <p>Sharpened Taj Mahal</p>
+                </div>
+            </div>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/minas_tirith.jpg" alt="Original Minas Tirith">
+                    <p>Original Minas Tirith</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/sharpened_mt.jpg" alt="Sharpened Minas Tirith">
+                    <p>Sharpened Minas Tirith</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hybrid Images Section -->
+        <div id="section5" class="description">
+            <h2>Hybrid Images and Fourier Analysis</h2>
+            <p>Hybrid images combine high frequencies from one image with low frequencies from another. Below are hybrid image examples and their Fourier analyses:</p>
+            
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/nutmeg.jpg" alt="Nutmeg">
+                    <p>Nutmeg</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/DerekPicture.jpg" alt="Derek">
+                    <p>Derek</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/hybrid_image1.png" alt="Hybrid Image Example">
+                    <p>Derek + Nutmeg</p>
                 </div>
             </div>
 
-            <!-- Hybrid Images Section -->
-            <div id="section5" class="description">
-                <h2>Hybrid Images and Fourier Analysis</h2>
-                <p>Hybrid images are created by blending high frequencies from one image with low frequencies from another. Below are examples of hybrid images along with their Fourier analysis:</p>
-                
-                <div class="gallery-section">
-                    <div class="image-container">
-                        <img src="images/nutmeg.jpg" alt="Original Image Example">
-                        <p>Nutmeg</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/DerekPicture.jpg" alt="Original Image Example">
-                        <p>Derek</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/hybrid_image1.png" alt="Hybrid Image Example">
-                        <p>Derek + Nutmeg</p>
-                    </div>
-                    <div class="image-container"></div>
-                        <img src="images/original_nutmeg.png" alt="Fourier Analysis">
-                        <p>Fourier Analysis of Original Nutmeg</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/original_derek.png" alt="Fourier Analysis">
-                        <p>Fourier Analysis of Original Derek</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/high_freq_nutmeg.png" alt="Fourier Analysis">
-                        <p>Fourier Analysis of High pass filtered Nutmeg</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/low_freq_derek.png" alt="Fourier Analysis">
-                        <p>Fourier Analysis of Low pass filtered Derek</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/hybrid_freq_derek_nutmeg.png" alt="Fourier Analysis">
-                        <p>Fourier Analysis of Hybrid Combined Image</p>
-                    </div>
-                    <p>
-                        Here is one more example of a successful blend of images, namely Gumbledore from combining Gimli and Dumbledore
-                    </p>
-                    <div class="image-container">
-                        <img src="images/gimli.jpg" alt="Successful Hybrid Image">
-                        <p>Gimli</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/dumbledore.jpg" alt="Successful Hybrid Image">
-                        <p>Dumbledore</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/gumbledore.jpg" alt="Successful Hybrid Image">
-                        <p>Gumbledore (Gimli + Dumbledore)</p>
-                    </div>
-                    <p>
-                        It seems like I couldn't get a good blend for these pictures of Bilbo Baggins and Legolas from LoTR.
-                        This is a failed example that didn't turn out great.
-                    </p>
-                    <div class="image-container">
-                        <img src="images/bilbo.jpg" alt="Failed Hybrid Image">
-                        <p>Bilbo</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/legolas.jpg" alt="Failed Hybrid Image">
-                        <p>Legolas</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/bilbolas.jpg" alt="Failed Hybrid Image">
-                        <p>Bilbolas (Bilbo + Legolas) (Failed Example)</p>
-                    </div>
+            <p>Here is another example of a successful blend: Gumbledore (Gimli + Dumbledore)</p>
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/gimli.jpg" alt="Gimli">
+                    <p>Gimli</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/dumbledore.jpg" alt="Dumbledore">
+                    <p>Dumbledore</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/gumbledore.jpg" alt="Gumbledore (Gimli + Dumbledore)">
+                    <p>Gumbledore</p>
                 </div>
             </div>
+        </div>
 
-            <!-- Multiresolution Blending Section -->
-            <div id="section6" class="description">
-                <h2>Multiresolution Blending</h2>
-                <p>Multiresolution blending allows us to seamlessly blend two images together. Below, the two original images are shown on the left and right, with the blended image in the center:</p>
+        <!-- Multiresolution Blending Section -->
+        <div id="section6" class="description">
+            <h2>Multiresolution Blending</h2>
+            <p>Multiresolution blending allows us to seamlessly blend two images together. Below, the two original images are shown on the left and right, with the blended image in the center:</p>
             
-                <!-- Container for the original and blended images (Orapple) -->
-                <div class="blending-container">
-                    <!-- Original Apple Image (Left) -->
-                    <div class="image-container">
-                        <img src="images/apple.jpeg" alt="Original Apple Image">
-                        <p>Original Apple Image</p>
-                    </div>
-            
-                    <!-- Blended Orapple Image (Center) -->
-                    <div class="image-container">
-                        <img src="images/orappleblended.png" alt="Blended Orapple">
-                        <p>Blended Orapple (Apple + Orange)</p>
-                    </div>
-            
-                    <!-- Original Orange Image (Right) -->
-                    <div class="image-container">
-                        <img src="images/orange.jpeg" alt="Original Orange Image">
-                        <p>Original Orange Image</p>
-                    </div>
+            <div class="image-group">
+                <div class="image-container">
+                    <img src="images/apple.jpeg" alt="Original Apple Image">
+                    <p>Original Apple Image</p>
                 </div>
-            
-                <!-- Another example with irregular mask -->
-                <p>Below is an example of multiresolution blending with an irregular mask (Barad-Dur + Windows XP Background):</p>
-            
-                <!-- Container for the original and blended images (Baraddows XP) -->
-                <div class="blending-container">
-                    <!-- Original Barad-Dur Image (Left) -->
-                    <div class="image-container">
-                        <img src="images/baraddur.jpg" alt="Original Barad-Dur Image">
-                        <p>Original Barad-Dur Image</p>
-                    </div>
-            
-                    <!-- Blended Baraddows XP Image (Center) -->
-                    <div class="image-container">
-                        <img src="images/baraddowsxpblended.png" alt="Blended Baraddows XP">
-                        <p>Baraddows XP (Barad-Dur/Mount Doom + Windows XP Background)</p>
-                    </div>
-            
-                    <!-- Original Windows XP Image (Right) -->
-                    <div class="image-container">
-                        <img src="images/windowsxp.jpg" alt="Original Windows XP Image">
-                        <p>Original Windows XP Image</p>
-                    </div>
+                <div class="image-container">
+                    <img src="images/orappleblended.png" alt="Blended Orapple (Apple + Orange)">
+                    <p>Blended Orapple</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/orange.jpeg" alt="Original Orange Image">
+                    <p>Original Orange Image</p>
                 </div>
             </div>
+        </div>
 
-            <!-- Conclusion Section -->
-            <div id="section7" class="description">
-                <h2>Conclusion</h2>
-                <p>This project showcases various filtering techniques and how they can be applied to image processing. We explored gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending, each producing interesting and useful results. The techniques presented in this project are foundational for many applications in computer vision.</p>
-            </div>
+        <!-- Conclusion Section -->
+        <div id="section7" class="description">
+            <h2>Conclusion</h2>
+            <p>This project showcases various filtering techniques, including gradient magnitude computation, unsharp masking, hybrid images, and multiresolution blending. These techniques are fundamental for many computer vision applications.</p>
         </div>
     </div>
 </body>

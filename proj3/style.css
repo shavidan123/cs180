@@ -1,0 +1,94 @@
+/* General styles for the body */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Main content section */
+.content {
+    padding: 40px;
+    max-width: 100%;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+.content h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.content h2 {
+    font-size: 28px;
+    color: #444;
+    margin-top: 40px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* General paragraph styles */
+.content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Image container for gallery sections */
+.image-container {
+    flex: 1 1 auto;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.image-container p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Flexbox layout for image galleries */
+.pair-container,
+.gallery-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+/* Hover effect on images */
+.image-container img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .content {
+        padding: 20px;
+    }
+
+    .pair-container, .gallery-section {
+        flex-direction: column;
+    }
+
+    .image-container {
+        max-width: 100%;
+    }
+}

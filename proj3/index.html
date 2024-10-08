@@ -14,16 +14,21 @@
             <!-- Section 1: Facial Keypoints and Triangulation -->
             <div id="section1" class="description">
                 <h2>Facial Keypoints and Triangulation</h2>
-                <p>This section displays facial keypoints selected from two images, one of myself from freshman year, and one of myself today. Using Delaunay triangulation, a mesh is created for the face, which is used for the morphing process. You can see the keypoints and triangulation below:</p>
-                
-                <div class="gallery-section">
+                <p>This section displays facial keypoints selected from two images, one of myself from freshman year, and one of myself today. Using Delaunay triangulation, a mesh is created for the face, which is used for the morphing process. You can see the original images, keypoints, and triangulation below:</p>
+                <div class="gallery-section"></div>
                     <div class="image-container">
-                        <img src="images/face1_keypoints.png" alt="Face 1 Keypoints">
+                        <img src="images/avi/rsz_1currentavinoglasses.jpg" alt="Current Avi">
                         <p>Face 1 Keypoints and Triangulation</p>
                     </div>
+                    <div class="image-container"></div>
+                        <img src="images/avi/rsz_1freshmanavi.jpg" alt="Freshman Avi">
+                        <p>Face 1 Keypoints and Triangulation</p>
+                    </div>
+                </div>
+                <div class="gallery-section">
                     <div class="image-container">
-                        <img src="images/face2_keypoints.png" alt="Face 2 Keypoints">
-                        <p>Face 2 Keypoints and Triangulation</p>
+                        <img src="images/triangulations/avitriangulations.png" alt="Facial Triangulations">
+                        <p>Face 1 Keypoints and Triangulation</p>
                     </div>
                 </div>
             </div>
@@ -31,20 +36,20 @@
             <!-- Section 2: Affine Warp and Midway Face -->
             <div id="section2" class="description">
                 <h2>Affine Warp and Midway Face</h2>
-                <p>We implemented an affine warp to create a midway face between two images by averaging their keypoints. Below, you can see the original faces and the midway face created by this process:</p>
+                <p>I then implemented an affine warp to create a midway face between the two images by leveraging the triangles I created earlier. Below, you can see the original faces and the midway face created by this process (I hope that's not what I looked like in between then and now haha):</p>
                 
                 <div class="gallery-section">
                     <div class="image-container">
-                        <img src="images/face1.png" alt="Face 1">
-                        <p>Face 1</p>
+                        <img src="images/avi/rsz_1freshmanavi.jpg" alt="Freshman Me">
+                        <p>Freshman Me</p>
                     </div>
                     <div class="image-container">
-                        <img src="images/midway_face.png" alt="Midway Face">
-                        <p>Midway Face</p>
+                        <img src="images/morphs/midwaymorph.png" alt="Midway Face">
+                        <p>Me sometime in between now and freshman year?</p>
                     </div>
                     <div class="image-container">
-                        <img src="images/face2.png" alt="Face 2">
-                        <p>Face 2</p>
+                        <img src="images/avi/rsz_1currentavinoglasses.jpg" alt="Face 2">
+                        <p>Current Me</p>
                     </div>
                 </div>
             </div>
@@ -52,34 +57,30 @@
             <!-- Section 3: Morph Sequence GIF -->
             <div id="section3" class="description">
                 <h2>Morph Sequence GIF</h2>
-                <p>We generated a sequence of morphed images between the two faces. Below is a GIF showing the full morph sequence from face 1 to face 2:</p>
+                <p>I then generated a sequence of morphed images between the two faces. Below is a GIF showing the full morph sequence from freshman year to now (I guess it's like growing up):</p>
                 
                 <div class="image-container">
-                    <img src="images/morph_sequence.gif" alt="Morph Sequence GIF">
+                    <img src="images/morphs/morph_sequence.gif" alt="Morph Sequence GIF">
                 </div>
             </div>
 
             <!-- Section 4: Mean Face from Danes Dataset -->
             <div id="section4" class="description">
                 <h2>Mean Face from Danes Dataset</h2>
-                <p>Using the Danes dataset, we computed the mean face by averaging keypoints and warping images to the mean shape. Below are several faces from the dataset, morphed into the mean shape, and examples of warping my face into the average face's geometry and vice versa:</p>
+                <p>Using the Danes dataset, I computed the mean face by averaging keypoints and warping images to the mean shape, then taking the average of the morphed faces. Below are several faces from the dataset, morphed into the mean shape, and examples of warping my face into the average face's geometry and vice versa:</p>
                 
                 <div class="gallery-section">
                     <div class="image-container">
-                        <img src="images/dane1_mean.png" alt="Dane 1 Morphed">
-                        <p>Dane 1 Morphed to Mean Shape</p>
+                        <img src="images/morphs/average_dane_face.png" alt="Dane Mean Shape">
+                        <p>Dane Mean Shape</p>
                     </div>
                     <div class="image-container">
-                        <img src="images/dane2_mean.png" alt="Dane 2 Morphed">
-                        <p>Dane 2 Morphed to Mean Shape</p>
+                        <img src="images/morphs/danesmorphed.png" alt="Danes Morphed">
+                        <p>Danes Morphed to Dane Mean Shape</p>
                     </div>
                     <div class="image-container">
-                        <img src="images/my_face_to_mean.png" alt="My Face Morphed to Mean">
-                        <p>My Face Morphed to Mean Geometry</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="images/mean_to_my_face.png" alt="Mean Face Morphed to My Geometry">
-                        <p>Mean Face Morphed to My Geometry</p>
+                        <img src="images/morphs/avitodane.png" alt="Mean Face Morphed to My Geometry">
+                        <p>Me morphed to Dane Mean Face, and Dane Mean Face Morphed to Me</p>
                     </div>
                 </div>
             </div>
@@ -87,11 +88,37 @@
             <!-- Section 5: Caricature -->
             <div id="section5" class="description">
                 <h2>Caricature</h2>
-                <p>I generated a caricature of my face by exaggerating the difference between my face and the average face. Below, you can see the resulting caricatures from different alpha values:</p>
+                <p>I generated various caricatures of my face by exaggerating the difference between my face and the average face. Below, you can see the resulting caricatures from different alpha values:</p>
                 
-                <div class="image-container">
-                    <img src="images/my_face_caricature.png" alt="Caricature">
-                    <p>Caricature of My Face</p>
+                <div class="gallery-section"></div>
+                    <div class="image-container">
+                        <img src="images/caricatures/caricature_0.png" alt="Caricature">
+                        <p>Caricature of My Face, Alpha = -0.5</p>
+                    </div>
+                    <div class="image-container"></div>
+                        <img src="images/caricatures/caricature_1.png" alt="Caricature">
+                        <p>Caricature of My Face, Alpha = 0</p>
+                    </div>
+                    <div class="image-container"></div>
+                        <img src="images/caricatures/caricature_2.png" alt="Caricature">
+                        <p>Caricature of My Face, Alpha = 0.5</p>
+                    </div>
+                    <div class="image-container"></div>
+                        <img src="images/caricatures/caricature_3.png" alt="Caricature">
+                        <p>Caricature of My Face, Alpha = 1</p>
+                    </div>
+                    <div class="image-container"></div>
+                        <img src="images/caricatures/caricature_4.png" alt="Caricature">
+                        <p>Caricature of My Face, Alpha = 1.5</p>
+                    </div>
+                    <div class="image-container"></div>
+                        <img src="images/caricatures/caricature_5.png" alt="Caricature">
+                        <p>Caricature of My Face, Alpha = 2</p>
+                    </div>
+                    <div class="image-container"></div>
+                        <img src="images/caricatures/caricature_6.png" alt="Caricature">
+                        <p>Caricature of My Face, Alpha = 3</p>
+                    </div>
                 </div>
             </div>
 
@@ -99,18 +126,23 @@
             <div id="section6" class="description">
                 <h2>Gender Morphing</h2>
                 <p>Using the average female face from the Danes dataset, I morphed my face by changing its shape, appearance, and both. Below are the results:</p>
-                
+                <div class="gallery-section"></div>
+                    <div class="image-container">
+                        <img src="images/triangulations/avifemaledanetriangulations.png" alt="Shape Morph">
+                        <p>Triangulations of My Face and Average Dane Female Face</p>
+                    </div>
+                </div>
                 <div class="gallery-section">
                     <div class="image-container">
-                        <img src="images/shape_morph.png" alt="Shape Morph">
-                        <p>Shape Morph</p>
+                        <img src="images/female_avi/morphed_avi_female_shape.png" alt="Shape Morph">
+                        <p>Shape Only Morph</p>
                     </div>
                     <div class="image-container">
-                        <img src="images/appearance_morph.png" alt="Appearance Morph">
-                        <p>Appearance Morph</p>
+                        <img src="images/female_avi/morphed_avi_female_color.png" alt="Appearance Morph">
+                        <p>Appearance Only Morph</p>
                     </div>
                     <div class="image-container">
-                        <img src="images/shape_appearance_morph.png" alt="Shape and Appearance Morph">
+                        <img src="images/female_avi/morphed_avi_female.png" alt="Shape and Appearance Morph">
                         <p>Shape + Appearance Morph</p>
                     </div>
                 </div>

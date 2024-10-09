@@ -15,18 +15,9 @@
         <p>This section displays facial keypoints selected from two images: one of myself from freshman year, and one of myself today. I used the given correspondence tool to manually label keypoints. Using Delaunay triangulation, a mesh is created for the face, which is used for the morphing process. You can see the original images, keypoints, and triangulation below:</p>
 
         <div class="gallery-section">
-            <div class="image-box">
-                <img src="images/avi/rsz_1currentavinoglasses.jpg" alt="Current Avi">
-                <p>Current Avi</p>
-            </div>
-            <div class="image-box">
-                <img src="images/avi/rsz_1freshmanavi.jpg" alt="Freshman Avi">
-                <p>Freshman Avi</p>
-            </div>
-            <div class="image-box">
-                <img src="images/triangulations/avitriangulations.png" alt="Facial Triangulation">
-                <p>Facial Triangulation</p>
-            </div>
+            <img src="images/avi/rsz_1currentavinoglasses.jpg" alt="Current Avi">
+            <img src="images/avi/rsz_1freshmanavi.jpg" alt="Freshman Avi">
+            <img src="images/triangulations/avitriangulations.png" alt="Facial Triangulation">
         </div>
     </div>
 
@@ -35,21 +26,12 @@
     <!-- Section 2: Affine Warp and Midway Face -->
     <div class="section" id="section2">
         <h2>Part 2: Affine Warp and Midway Face</h2>
-        <p>An affine warp was used to create a midway face between the two images by leveraging the triangulation. To compute the midway face, I developed the framework necessary for creating the full morph sequence. This involved calculating the affine transformation to align the triangulations of both images to an averaged one, using matrix equations to solve for each correspondence. Below, you can see the original faces and the midway face:</p>
+        <p>An affine warp was used to create a midway face between the two images by leveraging the triangulation. To compute the midway face, I developed the framework necessary for creating the full morph sequence. Below, you can see the original faces and the midway face:</p>
 
         <div class="gallery-section">
-            <div class="image-box">
-                <img src="images/avi/rsz_1freshmanavi.jpg" alt="Freshman Me">
-                <p>Freshman Me</p>
-            </div>
-            <div class="image-box">
-                <img src="images/morphs/midwaymorph.png" alt="Midway Face">
-                <p>Midway Face</p>
-            </div>
-            <div class="image-box">
-                <img src="images/avi/rsz_1currentavinoglasses.jpg" alt="Current Me">
-                <p>Current Me</p>
-            </div>
+            <img src="images/avi/rsz_1freshmanavi.jpg" alt="Freshman Me">
+            <img src="images/morphs/midwaymorph.png" alt="Midway Face">
+            <img src="images/avi/rsz_1currentavinoglasses.jpg" alt="Current Me">
         </div>
     </div>
 
@@ -60,9 +42,7 @@
         <h2>Part 3: Morph Sequence GIF</h2>
         <p>A sequence of morphed images was generated between the two faces, essentially showing the transformation from one image to the other. Below is a GIF showing the full morph sequence:</p>
 
-        <div class="image-box">
-            <img id="morphGif" src="images/morphs/morph_sequence.gif" alt="Morph Sequence GIF">
-        </div>
+        <img id="morphGif" src="images/morphs/morph_sequence.gif" alt="Morph Sequence GIF">
         <button onclick="resetGif()">Reset GIF</button>
     </div>
 
@@ -71,21 +51,12 @@
     <!-- Section 4: Mean Face from Danes Dataset -->
     <div class="section" id="section4">
         <h2>Part 4: Mean Face from Danes Dataset</h2>
-        <p>The mean face was computed from the Danes dataset by averaging keypoints and warping images to the mean shape. There are some artifacts in the final result, but they aren't as prominent in the versions of the images used for the calculations. Below are some other Dane faces morphed into the mean shape, and examples of my face morphed into the mean face's geometry:</p>
+        <p>The mean face was computed from the Danes dataset by averaging keypoints and warping images to the mean shape. Below are some other Dane faces morphed into the mean shape, and examples of my face morphed into the mean face's geometry:</p>
 
         <div class="gallery-section">
-            <div class="image-box">
-                <img src="images/morphs/average_dane_face.png" alt="Dane Mean Shape">
-                <p>Dane Mean Shape</p>
-            </div>
-            <div class="image-box">
-                <img src="images/morphs/danesmorphed.png" alt="Danes Morphed">
-                <p>Danes Morphed to Mean Shape</p>
-            </div>
-            <div class="image-box">
-                <img src="images/morphs/avitodane.png" alt="My Face to Dane Mean">
-                <p>My Face Morphed to Dane Mean Face</p>
-            </div>
+            <img src="images/morphs/average_dane_face.png" alt="Dane Mean Shape">
+            <img src="images/morphs/danesmorphed.png" alt="Danes Morphed to Mean Shape">
+            <img src="images/morphs/avitodane.png" alt="My Face to Dane Mean">
         </div>
     </div>
 
@@ -97,34 +68,13 @@
         <p>Various caricatures were generated by exaggerating the difference between my face and the average face. Below are the caricatures at different alpha values:</p>
 
         <div class="gallery-section">
-            <div class="image-box">
-                <img src="images/caricatures/caricature_0.png" alt="Caricature -0.5">
-                <p>Caricature Alpha = -0.5</p>
-            </div>
-            <div class="image-box">
-                <img src="images/caricatures/caricature_1.png" alt="Caricature 0">
-                <p>Caricature Alpha = 0</p>
-            </div>
-            <div class="image-box">
-                <img src="images/caricatures/caricature_2.png" alt="Caricature 0.5">
-                <p>Caricature Alpha = 0.5</p>
-            </div>
-            <div class="image-box">
-                <img src="images/caricatures/caricature_3.png" alt="Caricature 1">
-                <p>Caricature Alpha = 1</p>
-            </div>
-            <div class="image-box">
-                <img src="images/caricatures/caricature_4.png" alt="Caricature 1.5">
-                <p>Caricature Alpha = 1.5</p>
-            </div>
-            <div class="image-box">
-                <img src="images/caricatures/caricature_5.png" alt="Caricature 2">
-                <p>Caricature Alpha = 2</p>
-            </div>
-            <div class="image-box">
-                <img src="images/caricatures/caricature_6.png" alt="Caricature 3">
-                <p>Caricature Alpha = 3</p>
-            </div>
+            <img src="images/caricatures/caricature_0.png" alt="Caricature -0.5">
+            <img src="images/caricatures/caricature_1.png" alt="Caricature 0">
+            <img src="images/caricatures/caricature_2.png" alt="Caricature 0.5">
+            <img src="images/caricatures/caricature_3.png" alt="Caricature 1">
+            <img src="images/caricatures/caricature_4.png" alt="Caricature 1.5">
+            <img src="images/caricatures/caricature_5.png" alt="Caricature 2">
+            <img src="images/caricatures/caricature_6.png" alt="Caricature 3">
         </div>
     </div>
 
@@ -136,22 +86,10 @@
         <p>Using the average female face calculated from the women in the Danes dataset, I morphed my face into a woman by changing its shape, appearance, and both. Below are the results:</p>
 
         <div class="gallery-section">
-            <div class="image-box">
-                <img src="images/triangulations/avifemaledanetriangulations.png" alt="Triangulations of My Face and Female Dane">
-                <p>Triangulations of My Face and Female Dane</p>
-            </div>
-            <div class="image-box">
-                <img src="images/female_avi/morphed_avi_female_shape.png" alt="Shape Morph">
-                <p>Shape Morph</p>
-            </div>
-            <div class="image-box">
-                <img src="images/female_avi/morphed_avi_female_color.png" alt="Appearance Morph">
-                <p>Appearance Morph</p>
-            </div>
-            <div class="image-box">
-                <img src="images/female_avi/morphed_avi_female.png" alt="Shape and Appearance Morph">
-                <p>Shape + Appearance Morph</p>
-            </div>
+            <img src="images/triangulations/avifemaledanetriangulations.png" alt="Triangulations of My Face and Female Dane">
+            <img src="images/female_avi/morphed_avi_female_shape.png" alt="Shape Morph">
+            <img src="images/female_avi/morphed_avi_female_color.png" alt="Appearance Morph">
+            <img src="images/female_avi/morphed_avi_female.png" alt="Shape and Appearance Morph">
         </div>
     </div>
 

@@ -37,7 +37,7 @@
             <!-- Section 2: Affine Warp and Midway Face -->
             <div class="section" id="section2">
                 <h2>Affine Warp and Midway Face</h2>
-                <p>An affine warp was used to create a midway face between the two images by leveraging the triangulation. Below, you can see the original faces and the midway face:</p>
+                <p>An affine warp was used to create a midway face between the two images by leveraging the triangulation. To compute the midway face, I developed the framework necessary for creating the full morph sequence. This involved calculating the affine transformation to align the triangulations of both images to an averaged one, using matrix equations to solve for each correspondence. Additionally, since morphing involves blending pixel values, I initially implemented bilinear interpolation for averaging pixels between the images but found it too slow, so I switched to regularGridInterpolation. Using the completed morph function with both warp and dissolve fractions set to 0.5, I generated the midway face for both image sets. Below, you can see the original faces and the midway face:</p>
                 
                 <div class="gallery-section">
                     <div class="image-box">
@@ -60,7 +60,7 @@
             <!-- Section 3: Morph Sequence GIF -->
             <div class="section" id="section3">
                 <h2>Morph Sequence GIF</h2>
-                <p>A sequence of morphed images was generated between the two faces. Below is a GIF showing the full morph sequence:</p>
+                <p>A sequence of morphed images was generated between the two faces, essentially showing the transformation from one image to the other. Below is a GIF showing the full morph sequence:</p>
                 
                 <div class="image-box">
                     <img id="morphGif" src="images/morphs/morph_sequence.gif" alt="Morph Sequence GIF">
@@ -73,7 +73,7 @@
             <!-- Section 4: Mean Face from Danes Dataset -->
             <div class="section" id="section4">
                 <h2>Mean Face from Danes Dataset</h2>
-                <p>The mean face was computed from the Danes dataset by averaging keypoints and warping images to the mean shape. Below are faces morphed into the mean shape, and examples of my face morphed into the mean face's geometry:</p>
+                <p>The mean face was computed from the Danes dataset by averaging keypoints and warping images to the mean shape. There are some artifacts in the final result, but they aren't as prominent in the versions of the images used for the calculations. Below are some other Dane faces morphed into the mean shape, and examples of my face morphed into the mean face's geometry:</p>
                 
                 <div class="gallery-section">
                     <div class="image-box">
@@ -89,6 +89,8 @@
                         <p>My Face Morphed to Dane Mean Face</p>
                     </div>
                 </div>
+
+                <p>It's interesting to see how the mean face captures the average facial features of the Danes dataset. The morphed faces show how the average face can be used to transform other faces into a more "average" and kind of rounded appearance.</p>
             </div>
 
             <hr class="section-divider">
@@ -119,7 +121,16 @@
                         <img src="images/caricatures/caricature_4.png" alt="Caricature 1.5">
                         <p>Caricature Alpha = 1.5</p>
                     </div>
+                    <div class="image-box"></div>
+                        <img src="images/caricatures/caricature_5.png" alt="Caricature 2">
+                        <p>Caricature Alpha = 2</p>
+                    </div>
+                    <div class="image-box"></div>
+                        <img src="images/caricatures/caricature_6.png" alt="Caricature 3">
+                        <p>Caricature Alpha = 3</p>
+                    </div>
                 </div>
+                <p>Sadly, it seems I get a bit more round!</p>
             </div>
 
             <hr class="section-divider">
@@ -127,7 +138,7 @@
             <!-- Section 6: Gender Morphing -->
             <div class="section" id="section6">
                 <h2>Gender Morphing</h2>
-                <p>Using the average female face from the Danes dataset, I morphed my face by changing its shape, appearance, and both. Below are the results:</p>
+                <p>Using the average female face calcualted from the women in the Danes dataset, I morphed my face into a woman by changing its shape, appearance, and both. Below are the results:</p>
                 
                 <div class="gallery-section">
                     <div class="image-box">
@@ -154,7 +165,7 @@
             <!-- Conclusion Section -->
             <div class="section" id="section7">
                 <h2>Conclusion</h2>
-                <p>This project explored facial keypoint selection, triangulation, affine warping, morphing, computing mean faces, and generating caricatures. These methods allow for powerful image transformations.</p>
+                <p>This project explored facial keypoint selection, triangulation, affine warping, morphing, computing mean faces, and generating caricatures. These methods allow for powerful image transformations!</p>
             </div>
         </div>
     </div>

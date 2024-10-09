@@ -8,21 +8,7 @@ body {
     text-align: center;
 }
 
-/* Container for the whole page */
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-/* Main content section */
-.content {
-    padding: 40px;
-    max-width: 80%;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-}
+/* Removed the .container and .content styles to eliminate the large content box */
 
 /* Header styles */
 h1 {

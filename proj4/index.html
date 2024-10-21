@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Warping and Mosaicing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Image Warping and Mosaicing</h1>
+        <p>CS 180: Project 4, Part A<br>Avidan Shah</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Part 1: Shoot and Digitize Pictures</h2>
+            <p>
+                All images were captured using my iphone camera. Note that for the picture of my room, there is a crease on the wall that should not be mistaken for a crease resulting from mosaicing.
+            </p>
+            <div class="image-row">
+                <img src="./images/strawberrycrisps.jpg" alt="Scrisps Image 1">
+                <img src="./images/strawberrycrisps2.jpg" alt="Scrisps Image 2">
+            </div>
+            <div class="image-row">
+                <img src="./images/computerpic1.jpg" alt="Latop Image 1">
+                <img src="./images/computerpic2.jpg" alt="Laptop Image 2">
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 2: Recover Homographies</h2>
+            <p>
+                The homography matrix is a 3x3 transformation matrix that maps corresponding points between two images, enabling operations like perspective warping. It has 8 independent parameters, as the matrix entries are determined up to scale, with the bottom-right entry fixed to 1 to avoid ambiguity. This matrix captures transformations such as rotation, translation, scaling, and skewing.
+                To compute the homography matrix, I manually identified at least four pairs of corresponding points between the two images. These point correspondences define the relationship between the two views. Using equations covered in lecture, I set up a system of linear equations that expresses the coordinates of the corresponding points through the unknown homography matrix. I solved this system using least squares optimization to minimize error, ensuring the matrix accurately represents the transformation, even when there are small discrepancies in the selected points.            </p>
+            <img src="./images/homography.png" alt="Homography Representation">
+        </section>
+
+        <section>
+            <h2>Part 3: Warp Images &amp; Image Rectification</h2>
+            <p>
+                I first warped the corners of the original image by multiplying the homography matrix with the corners and normalizing.
+                I calculated the bounds of the new image from the warped corners and used a meshgrid to warp the points of the original image.
+                I then interpolated linearly from the warped points, filling in missing values in the result image with 0.
+            </p>
+            <img src="./images/penguin.png" alt="Warped Penguin Image">
+            <img src="./images/parrot.png" alt="Warped Parrot Image">
+        </section>
+
+        <section>
+            <h2>Part 4: Blend Images into a Mosaic</h2>
+            <p>
+                For each mosaic, I left one image unwarped and warped the other into its projection, then applied weighted averaging with a gradient mask.
+                I blended the low frequencies of the images together with a Gaussian filter and used a simple edge for the remaining high frequencies.
+                I combined the blurred low frequencies with the sharp high frequencies for the final mosaic and cropped the result to a rectangle.
+            </p>
+            <div class="image-grid">
+                <img src="./images/brienz.png" alt="Brienz Image">
+                <img src="./images/brienz_blend.png" alt="Brienz Blended">
+                <img src="./images/brienz_mosaic.png" alt="Brienz Mosaic">
+                <img src="./images/tower.png" alt="Tower Image">
+                <img src="./images/tower_blend.png" alt="Tower Blended">
+                <img src="./images/tower_mosaic.png" alt="Tower Mosaic">
+                <img src="./images/bangkok.png" alt="Bangkok Image">
+            </div>
+        </section>
+
+        <section>
+            <h2>What I Learned</h2>
+            <p>
+                The most important thing I learned from this part of the project was how to calculate and apply the homography matrices.
+                It was really cool to see how images could be straightened and warped for alignment.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

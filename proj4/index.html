@@ -16,24 +16,40 @@
         <section>
             <h2>Part 1: Shoot and Digitize Pictures</h2>
             <p>
-                All images were captured using my iphone camera. Note that for the picture of my room, there is a crease on the wall that should not be mistaken for a crease resulting from mosaicing.
+                All images were captured using my iPhone camera. Note that for the picture of my room, there is a crease on the wall that should not be mistaken for a crease resulting from mosaicing.
             </p>
             <div class="image-row">
-                <img src="./images/strawberrycrisps.jpg" alt="Scrisps Image 1">
-                <img src="./images/strawberrycrisps2.jpg" alt="Scrisps Image 2">
+                <figure>
+                    <img src="./images/strawberrycrisps.jpg" alt="Crisps Image 1">
+                    <figcaption>First view of the strawberry crisps.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./images/strawberrycrisps2.jpg" alt="Crisps Image 2">
+                    <figcaption>Alternate view of the strawberry crisps that I wanted to warp to.</figcaption>
+                </figure>
             </div>
             <div class="image-row">
-                <img src="./images/computerpic1.jpg" alt="Latop Image 1">
-                <img src="./images/computerpic2.jpg" alt="Laptop Image 2">
+                <figure>
+                    <img src="./images/computerpic1.jpg" alt="Laptop Image 1">
+                    <figcaption>First image of the laptop setup.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./images/computerpic2.jpg" alt="Laptop Image 2">
+                    <figcaption>Alternate view of the laptop setup (that I wanted to warp to).</figcaption>
+                </figure>
             </div>
         </section>
 
         <section>
             <h2>Part 2: Recover Homographies</h2>
             <p>
-                The homography matrix is a 3x3 transformation matrix that maps corresponding points between two images, enabling operations like perspective warping. It has 8 independent parameters, as the matrix entries are determined up to scale, with the bottom-right entry fixed to 1 to avoid ambiguity. This matrix captures transformations such as rotation, translation, scaling, and skewing.
-                To compute the homography matrix, I manually identified at least four pairs of corresponding points between the two images. These point correspondences define the relationship between the two views. Using equations covered in lecture, I set up a system of linear equations that expresses the coordinates of the corresponding points through the unknown homography matrix. I solved this system using least squares optimization to minimize error, ensuring the matrix accurately represents the transformation, even when there are small discrepancies in the selected points.            </p>
-            <img src="./images/homography.png" alt="Homography Representation">
+                The homography matrix is a transformation matrix that maps corresponding points between two images, enabling operations like perspective warping. It has 8 independent parameters, as the matrix entries are determined up to scale, with the bottom-right entry fixed to 1 to avoid ambiguity. This matrix captures transformations such as rotation, translation, scaling, and skewing.
+                To compute the homography matrix, I manually identified at least four pairs of corresponding points between the two images. These point correspondences define the relationship between the two views. Using equations covered in lecture, I set up a system of linear equations that expresses the coordinates of the corresponding points through the unknown homography matrix. I solved this system using least squares optimization to minimize error, ensuring the matrix accurately represents the transformation, even when there are small discrepancies in the selected points.
+            </p>
+            <figure>
+                <img src="./images/homography.png" alt="Homography Representation">
+                <figcaption>Visualization of the homography matrix.</figcaption>
+            </figure>
         </section>
 
         <section>
@@ -43,11 +59,26 @@
                 Next, I calculated the spatial bounds of the warped image by finding the minimum and maximum coordinates from the transformed corners. With these bounds, I created a grid of coordinates (using a meshgrid) that corresponds to every pixel location in the new warped image.        
                 For each pixel in this new coordinate grid, I mapped it back to the original image using the inverse of the homography transformation. I applied nearest-neighbor interpolation to determine the pixel values from the corresponding points in the original image. Any pixel locations that did not map to valid points in the original image were filled with a value of 0, ensuring that the final warped image was complete and handled any gaps gracefully.
             </p>
-            <img src="./images/crispspoints.png" alt="Warped Crisps Image">
-            <img src="./images/zoomedcrisps.png" alt="Warped Computer Image">
-            <img src="./results/rectified_crisps.png" alt="Warped Crisps Image">
-            <img src="./images/computerpoints.png" alt="Warped Computer Image">
-            <img src="./results/rectified_laptop.png" alt="Warped Computer Image">
+            <figure>
+                <img src="./images/crispspoints.png" alt="Crisps Point Correspondences">
+                <figcaption>Point correspondences for the strawberry crisps image.</figcaption>
+            </figure>
+            <figure>
+                <img src="./images/zoomedcrisps.png" alt="Zoomed View of Warped Crisps">
+                <figcaption>Zoomed-in view of the warped strawberry crisps image.</figcaption>
+            </figure>
+            <figure>
+                <img src="./results/rectified_crisps.png" alt="Rectified Crisps Image">
+                <figcaption>Rectified image of the crisps.</figcaption>
+            </figure>
+            <figure>
+                <img src="./images/computerpoints.png" alt="Laptop Point Correspondences">
+                <figcaption>Point correspondences for the laptop image.</figcaption>
+            </figure>
+            <figure>
+                <img src="./results/rectified_laptop.png" alt="Rectified Laptop Image">
+                <figcaption>Rectified image of the laptop setup (zoomed in).</figcaption>
+            </figure>
         </section>
 
         <section>
@@ -56,17 +87,45 @@
                 For each mosaic, I left one image in its original form and warped the other to align with the same perspective, ensuring they shared a common coordinate system. To achieve smooth transitions in the overlapping areas, I applied weighted averaging with a gradient mask, allowing for a gradual blend between the two images to minimize visible seams. I utilized Gaussian and Laplacian stacks to separate the images into multiple frequency components. The Gaussian stacks captured the low-frequency components—broad color transitions and general shapes—while the Laplacian stacks isolated the high-frequency details, such as edges and fine textures. At each level of the stack, I blended the corresponding components from both images using the gradient mask. The low-frequency Gaussian components ensured smooth blending across large areas, while the high-frequency Laplacian components preserved critical edges and finer details. Finally, I combined the blended components from all stack levels to produce the complete mosaic. Note that in the picture of my room, there is a crease in the wall, not due to the mosaic.
             </p>
             <div class="image-grid">
-                <img src="./images/roomperspective1.jpg" alt="Room Image 1">
-                <img src="./images/roomperspective2.jpg" alt="Room Image 2">
-                <img src="./results/mosaic_room_perspective.png" alt="Mosaic Room Image">
-                <img src="./images/mlk1.jpg" alt="MLKImage 1">
-                <img src="./images/mlk2.jpg" alt="MLK Image 2">
-                <img src="./results/mosaic_mlk.png" alt="Mosaic MLK Image">
-                <img src="./images/mlkalt1.png" alt="Alt MLK Image 1">
-                <img src="./images/mlkalt2.png" alt="Alt MLK Image 1">
-                <img src="./results/mosaic_mlkalt.png" alt="MOsaic MLK ALT Image 1">
+                <figure>
+                    <img src="./images/roomperspective1.jpg" alt="Room Image 1">
+                    <figcaption>First perspective of my room.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./images/roomperspective2.jpg" alt="Room Image 2">
+                    <figcaption>Second perspective of my room.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./results/mosaic_room_perspective.png" alt="Mosaic of Room">
+                    <figcaption>Mosaic of the room.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./images/mlk1.jpg" alt="MLK Image 1">
+                    <figcaption>First perspective of the inside of MLK.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./images/mlk2.jpg" alt="MLK Image 2">
+                    <figcaption>Second perspective of the inside of MLK.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./results/mosaic_mlk.png" alt="Mosaic of MLK Statue">
+                    <figcaption>Mosaic of the MLK pictures.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./images/mlkalt1.jpg" alt="Alternate MLK Image 1">
+                    <figcaption>Alternate perspective of MLK.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./images/mlkalt2.jpg" alt="Alternate MLK Image 2">
+                    <figcaption>Picture 2 of alternate perspective of MLK.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./results/mosaic_mlkalt.png" alt="Alternate Mosaic of MLK">
+                    <figcaption>Final Mosaic of the two previous images.</figcaption>
+                </figure>
             </div>
         </section>
     </main>
+
 </body>
 </html>

@@ -144,6 +144,9 @@
             </div>
 
             <h3>Adaptive Non-Maximal Suppression (ANMS)</h3>
+            <p>
+                To reduce the number of detected corners and ensure a more uniform distribution, I implemented Adaptive Non-Maximal Suppression (ANMS). This technique ranks corners based on their response values and suppresses non-maximal corners within a certain radius. By selecting the top N corners with the highest response values, ANMS helps identify the most salient features while reducing redundancy and computational overhead.
+            </p>
             <div class="image-row">
                 <figure>
                     <img src="./results/anms_mlk_1.png" alt="ANMS Corners on MLK Image 1">

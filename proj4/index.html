@@ -161,7 +161,7 @@
                 I then matched feature descriptors between the two MLK images using the ratio test. This involved comparing the distance of the closest neighbor to the second-closest neighbor and selecting matches where this ratio was below a certain threshold, indicating reliable correspondences. Figure 6B from the paper helped choose the correct threshold
             </p>
             <figure>
-                <img src="./images/matches_mlk.png" alt="Feature Matches between MLK Images">
+                <img src="./results/matches_mlk.png" alt="Feature Matches between MLK Images">
                 <figcaption>Feature matches between MLK Image 1 and MLK Image 2.</figcaption>
             </figure>
         </section>
@@ -172,11 +172,11 @@
                 To ensure that the homography estimation was robust to outliers, I implemented the RANSAC algorithm. This involved randomly selecting subsets of correspondences, computing homography matrices, and selecting the matrix with the most inliers based on a predefined threshold. The final homography was refined using all inliers to achieve accurate alignment.
             </p>
             <figure>
-                <img src="./images/ransac_mlk.png" alt="RANSAC Inlier Matches">
+                <img src="./results/ransac_mlk.png" alt="RANSAC Inlier Matches">
                 <figcaption>Inlier matches identified by RANSAC for MLK images.</figcaption>
             </figure>
             <figure></figure>
-                <img src="./images/mlkalt_ransac.png" alt="RANSAC Inlier Matches">
+                <img src="./results/mlkalt_ransac.png" alt="RANSAC Inlier Matches">
                 <figcaption>Inlier matches identified by RANSAC for the alternative MLK images.</figcaption>
             </figure>
         </section>

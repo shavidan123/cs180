@@ -1,0 +1,29 @@
+.image-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.image-grid figure {
+    flex: 1 1 calc(25% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.image-row figure, .image-grid figure {
+    margin: 0;
+}
+
+.image-row img, .image-grid img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

@@ -197,7 +197,7 @@
             </p>
             <div class="image-row">
                 <figure>
-                    <img src="images/imagettoimage1.png" alt="Image Translation Sample">
+                    <img src="images/imagetoimage1.png" alt="Image Translation Sample">
                     <figcaption>Image-to-Image Translation Samples for Test Image, Manhattan Bridge, and Golden Gate Bridge.</figcaption>
                 </figure>
             </div>
@@ -307,7 +307,7 @@
                     <figcaption>Samples after 5 epochs of training</figcaption>
                 </figure>
                 <figure>
-                    <img src="images/epoch5sample.png" alt="UNet Denoising at t=250">
+                    <img src="images/epoch20tcsamples.png" alt="UNet Denoising at t=250">
                     <figcaption>Samples after 20 epochs of training</figcaption>
                 </figure>
                 <figure>
@@ -320,7 +320,7 @@
             <h2>Part 2.4: Class-Conditioned UNet</h2>
             <p>
                 In order to improve the results of the Time-Conditioned UNet, we implement a Class-Conditioned UNet. This allows us to have better control over the sampled images, along with better image quality.
-                We do this by encoding class into a one hot vector and appending it at various layers in the model architecture. Now the input takes a class and a time. The results are shown below.
+                We do this by encoding class into a one hot vector and appending it at various layers in the model architecture. Now the input takes a class and a time. The results are shown below. Note that 4 images of each digit are shown, they are just in order from top to bottom, left to right.
             </p>
             <div class="image-row">
                 <figure>

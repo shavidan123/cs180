@@ -1,0 +1,78 @@
+/* General Reset */
+body, h1, h2, h3, p, img {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #212529;
+    padding: 20px;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    background-color: #00457c;
+    color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+/* Section Styling */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #00457c;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 15px 0 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* Image Styling */
+img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.image-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+figure {
+    margin: 10px;
+    text-align: center;
+}
+
+figcaption {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #6c757d;
+}

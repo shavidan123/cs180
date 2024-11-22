@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Power of Diffusion Models</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>The Power of Diffusion Models</h1>
+        <p>CS180: Project 5, Part A<br>Avidan Shah</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Part 0: Setup</h2>
+            <p>
+                To use the DeepFloyd IF diffusion model, we set up the two-stage process for image generation. The outputs demonstrate the model's capability to handle noise and recover image quality. The random seed is fixed at 180 for reproducibility. The quality is good as we use the default num_inference_steps of 20.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/oilpainting20.png" alt="Caption and Output for Image 1">
+                    <figcaption>20 Step oil painting of a snowy mountain village</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/manwithhat.png" alt="Caption and Output for Image 2">
+                    <figcaption>20 Step a man with a hat</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/rocketship.png" alt="Caption and Output for Image 3">
+                    <figcaption>20 Step a rocket ship</figcaption>
+                </figure>
+            </div>
+            <p>
+                I then did an ablation test of num_inference_steps by reducin the number to 10 and 5. The quality is ok at 10, but starting to clearly drop at 5.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/oilpainting20.png" alt="Caption and Output for Image 1">
+                    <figcaption>20 Step oil painting of a snowy mountain village</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/oilpainting10.png" alt="Caption and Output for Image 2">
+                    <figcaption>10 Step oil painting of a snowy mountain village</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/oilpainting5.png" alt="Caption and Output for Image 3">
+                    <figcaption>5 Step oil painting of a snowy mountain village</figcaption>
+                </figure>
+            </div>
+            
+        </section>
+
+        <section>
+            <h2>Part 1: Sampling Loops</h2>
+            <h3>Forward Process</h3>
+            <p>
+                In the forward process, we add noise progressively to an image using precomputed parameters. We do this by sampling from a gaussian with certain mean and variance, and scale the image. The following images show the noisy stages of the Campanile at various timesteps.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/noisycampanile250.png" alt="Gaussian Blur Denoising at t=250">
+                    <figcaption>Noisy Campanile at t=250.</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/noisycampanile500.png" alt="Gaussian Blur Denoising at t=500">
+                    <figcaption>Noisy Campanile at t=500.</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/noisycampanile500.png" alt="Gaussian Blur Denoising at t=750">
+                    <figcaption>Noisy Campanile at t=750.</figcaption>
+                </figure>
+            </div>
+            <h3>Classical Denoising</h3>
+            <p>
+                It is clear that classical denoising methods are not as effective here, you can see the results from Gaussian blur filtering at different t-values
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/gaussianblur250.png" alt="Gaussian Blur Denoising at t=250">
+                    <figcaption>Gaussian Blur at t=250.</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/gaussianblur500.png" alt="Gaussian Blur Denoising at t=500">
+                    <figcaption>Gaussian Blur at t=500.</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/gaussianblur750.png" alt="Gaussian Blur Denoising at t=750">
+                    <figcaption>Gaussian Blur at t=750.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.3: One Step Denoising</h2>
+            <p>
+                One step denoising is a simple method that leverages the trained diffusion model. You can see the results are much better, even on higher noise levels.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/campanile.png" alt="Iterative Denoising: Epoch 5">
+                    <figcaption>Original Campanile Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/noisycampanile250.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>Noisy Campanile Image (250)</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/unetdenoise250.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>Unet 1 step denoise</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/campanile.png" alt="Iterative Denoising: Epoch 5">
+                    <figcaption>Original Campanile Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/noisycampanile500.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>Noisy Campanile Image (500)</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/unetdenoise500.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>Unet 1 step denoise</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/campanile.png" alt="Iterative Denoising: Epoch 5">
+                    <figcaption>Original Campanile Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/noisycampanile750.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>Noisy Campanile Image (750)</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/unetdenoise750.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>Unet 1 step denoise</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.4: Iterative Denoising</h2>
+            <p>
+                Iterative denoising progressively refines a noisy image across multiple timesteps, gradually reducing noise by combining predicted signals and noise estimates. In contrast, one-step denoising directly projects the noisy image to a clean estimate in a single step, which is faster but less accurate. As you can see, both are more effective than gaussian blurring.
+                Below, we visualize the results after several denoising iterations. We start at timestep 990, taking step sizes of 30, where we gradually denoise with each step.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/iterativedenoisingsteps.png" alt="Iterative Denoising: Epoch 5">
+                    <figcaption>Iterative Denoising results Every 5 Loops.</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/iterativedenoisingfinal.png" alt="Iterative Denoising: Epoch 5">
+                    <figcaption>Final Result After Iterative Denoising</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/unetdenoise750.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>One Step Denoising</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/gaussianblur750.png" alt="Iterative Denoising: Epoch 20">
+                    <figcaption>Gaussian Blur Denoise</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.5: Diffusion Model Sampling</h2>
+            <p>
+                By using the iterative denoising function, setting i_start to 0, we can sample images from scratch by denoising pure noise. We show the results of the prompt "a high quality photo"
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/sampledimages1.png" alt="Image Translation Sample">
+                    <figcaption>Sampled Images (Original)</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.6: Diffusion Model Sampling</h2>
+            <p>
+                The previously generated images were not great, so we can improve upon this by implementing Classifier Free Guidance (CFG). This means we calculate both a conditional and an unconditional noise estimate, and take a weighted linear combination of the two. This results in much higher quality images
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/sampledimagescfg.png" alt="Image Translation Sample">
+                    <figcaption>Sampled Images (CFG)</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.7: Image-to-Image Translation</h2>
+            <p>
+                By adding controlled noise to existing images, we can project them onto a natural image manifold to generate edited versions. Here are the results for varying starting indices, [1, 3, 5, 7, 10, and 20]:
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/imagettoimage1.png" alt="Image Translation Sample">
+                    <figcaption>Image-to-Image Translation Samples for Test Image, Manhattan Bridge, and Golden Gate Bridge.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.7.1: Hand Drawn Images</h2>
+            <p>
+                We can do the same process as the previous part, but this time using hand drawn images. Here are the results for the test example (avocado) and two of my own (admittedly bad) drawings:
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/handdrawn.png" alt="Image Translation Sample">
+                    <figcaption>Image-to-Image Hand Drawn.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.7.2: Inpainting</h2>
+            <p>
+                By cleverly applying a mask to the image, we can fill in the missing parts using the diffusion model. Here are the results on the test image with test mask, along with two of my own images and custom masks
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/masks.png" alt="Image Translation Sample">
+                    <figcaption>Original Image, Mask, and Inpainted Image</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.7.3: Text Conditional Image to Image Translation</h2>
+            <p>
+                We can do image to image translation again, however this time we change the prompt to "a rocket ship". Results for the test image and two examples are shown below:
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/tcimagetoimage.png" alt="Image Translation Sample">
+                    <figcaption>Original Image, Mask, and Inpainted Image</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.8: Visual Anagrams</h2>
+            <p>
+                This section demonstrates how to use diffusion models to create images that are different when flipped, such as an image that looks like "an oil painting of people around a campfire" but flips upside down to reveal "an oil painting of an old man." The process involves denoising the image twice: once with the first prompt and once with the second prompt after flipping the image. The flipped noise estimate is then averaged with the original noise estimate, and the denoising step is performed using the combined noise. The result is an image that reveals different interpretations based on its orientation.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/anagrams.png" alt="Skull and Waterfall Morphing">
+                    <figcaption>Anagrams of an old man and people around a campfire, a hipster barista and a dog, and the amalfi coast and a snowy mountain village.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1.9: Hybrid Images</h2>
+            <p>
+                This section demonstrates how to create hybrid images using Factorized Diffusion. The process involves generating noise estimates for two different text prompts and combining them by applying a low-pass filter to one noise estimate and a high-pass filter to the other. The final noise estimate, created from these filtered components, is used to generate a hybrid image that blends elements from both prompts. As per the spec, I use gaussian blur with a kernel size of 33 and sigma 2 for the low-pass filter to achieve optimal results.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/hybridimages.png" alt="Skull and Waterfall Hybrid Image">
+                    <figcaption>Hybrid Image: Skull and Waterfall, Skull and Snowy Mountain Village, Pencil and Rocket Ship</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <h1>Project Part B, UNet</h1>
+
+        <section>
+            <h2>Part 1: UNet Denoising</h2>
+            <p>
+                In this section, we implement a UNet model to perform image denoising on the MNIST dataset. We experiment with varying levels of noise and show the results below.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/epoch1sample.png" alt="UNet Denoising at t=250">
+                    <figcaption>UNet Sampling Results after Epoch 1.</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/epoch5sample.png" alt="UNet Denoising at t=250">
+                    <figcaption>UNet Sampling Results after Epoch 5</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/varyingnoisetestset.png" alt="UNet Denoising at t=250">
+                    <figcaption>UNet Denoising on Test Set for Sigma = [0, 0.2, 0.4, 0.5, 0.6, 0.8, 1] (top is least noisy, bottom is most).</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/unettraincurve.png" alt="UNet Denoising at t=500">
+                    <figcaption>UNet Training Loss Curve</figcaption>
+                </figure>
+            </div>
+        </section>
+        <section>
+            <h2>Part 2.3: Time-Conditioned UNet</h2>
+            <p>
+                In this section, we implement a Time-Conditioned UNet model to generate images. We train the time conditioned UNet by picking a random image and a random t, then train the denoiser to predict the noise.
+                Repeating this over many iterations allows us to converge and we get a successful model.
+                Unfortunately, this alone is not good enough to get good sampling results, as can be seen below.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/epoch5tcsamples.png" alt="UNet Denoising at t=250">
+                    <figcaption>Samples after 5 epochs of training</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/epoch5sample.png" alt="UNet Denoising at t=250">
+                    <figcaption>Samples after 20 epochs of training</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/tcunettraincurve.png" alt="UNet Denoising at t=250">
+                    <figcaption>Time Conditioned UNet Training Loss Curve</figcaption>
+                </figure>
+            </div>
+        </section>
+        <section>
+            <h2>Part 2.4: Class-Conditioned UNet</h2>
+            <p>
+                In order to improve the results of the Time-Conditioned UNet, we implement a Class-Conditioned UNet. This allows us to have better control over the sampled images, along with better image quality.
+                We do this by encoding class into a one hot vector and appending it at various layers in the model architecture. Now the input takes a class and a time. The results are shown below.
+            </p>
+            <div class="image-row">
+                <figure>
+                    <img src="images/classcondgensampleepoch5.png" alt="UNet Denoising at t=250">
+                    <figcaption>Samples after 5 epochs of training</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/classcondgensampleepoch20.png" alt="UNet Denoising at t=250">
+                    <figcaption>Samples after 20 epochs of training</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/training_loss_ccunet.png" alt="UNet Denoising at t=250">
+                    <figcaption>Time Conditioned UNet Training Loss Curve</figcaption>
+                </figure>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
